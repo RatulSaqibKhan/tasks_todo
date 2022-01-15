@@ -17,6 +17,9 @@ class UserSeeder extends Seeder
         $users = [
             'name' => "Admin",
             'email' => "admin@todo.com",
+            'designation' => "System Admin",
+            'phone_no' => "098765435",
+            'address' => "Dhaka, Bangladesh",
             'password' => \bcrypt('123456'),
             'created_at' => now(),
             'updated_at' => now(),

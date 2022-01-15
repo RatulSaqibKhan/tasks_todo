@@ -61,7 +61,7 @@
           <img src="https://via.placeholder.com/110x110" class="user-img" alt="user avatar">
           <div class="user-info ps-3">
             <p class="user-name mb-0">{{ currentUserName() }}</p>
-            <p class="designattion mb-0">Web Designer</p>
+            <p class="designattion mb-0">{{ currentUserDesignation() }}</p>
           </div>
         </a>
         <ul class="dropdown-menu dropdown-menu-end">
