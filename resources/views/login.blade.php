@@ -5,6 +5,8 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="Description" content="Application: Tasks Todo Application, Author: Md. Nazmus Saqib Khan, Md. Maruf Hossain">
+	<meta name="robots" content="noindex" />
   <!--favicon-->
   <link rel="icon" href="{{ asset('assets/images/favicon-32x32.png') }}" type="image/png" />
   <!-- loader-->
@@ -14,7 +16,7 @@
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet">
-  <title>Dashtrans - Bootstrap5 Admin Template</title>
+  <title>TODO Tasks - Login</title>
 </head>
 
 <body class="bg-theme bg-theme1">

@@ -1,4 +1,5 @@
 @extends('mainframe')
+@section('page-title', 'Dashtrans - Bootstrap5 Admin Template')
 @section('page-content')
 <div class="card shadow-none bg-transparent border-bottom border-2">
   <div class="card-body">
