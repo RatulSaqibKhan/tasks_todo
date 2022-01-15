@@ -17,7 +17,7 @@
   <title>Dashtrans - Bootstrap5 Admin Template</title>
 </head>
 
-<body class="bg-theme bg-theme2">
+<body class="bg-theme bg-theme1">
   <!--wrapper-->
   <div class="wrapper">
     <div class="section-authentication-signin d-flex align-items-center justify-content-center my-5 my-lg-0">
@@ -89,6 +89,7 @@
     </div>
   </div>
   <!--end wrapper-->
+  @includeIf('components.switcher')
   <!-- Bootstrap JS -->
   <script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
   <!--plugins-->
@@ -121,6 +122,8 @@
     })
     
   </script>
+	<script src="{{ asset('assets/js/switcher.js') }}"></script>
+
 </body>
 
 </html>
