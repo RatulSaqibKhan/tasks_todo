@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\AuthenticatedRequest;
+use App\Services\AuthenticatedUserDataService;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -25,6 +26,7 @@ class AuthenticationController extends Controller
     {
         try {
             if (\auth()->attempt($request->except('_token'))) {
+                (new AuthenticatedUserDataService)->setData();
                 return \redirect('/dashboard');
             }
             session()->flash('error', 'Email or Password does not match!');
