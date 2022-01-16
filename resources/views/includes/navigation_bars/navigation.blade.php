@@ -40,10 +40,10 @@
     </a>
     <ul>
       <li>
-        <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>List</a>
+        <a href="{{ url('/users') }}"><i class="bx bx-right-arrow-alt"></i>List</a>
       </li>
       <li>
-        <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>New User</a>
+        <a href="{{ url('/users/create') }}"><i class="bx bx-right-arrow-alt"></i>New User</a>
       </li>
       <li>
         <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>Task Assignment</a>

@@ -2,6 +2,7 @@
 
 define("SUCCESS_MSG", "Success!");
 define("ERROR_MSG", "Something went wrong!");
+define("DATA_FETCHED_SUCCESS_MSG", "Data fetched successfully!");
 define("SAVE_SUCCESS_MSG", "Data saved successfully!");
 define("SAVE_FAILED_MSG", "Data saving failed!");
 define("UPDATE_SUCCESS_MSG", "Data updated successfully!");

@@ -42,10 +42,10 @@
 				<div class="toggle-icon ms-auto"><i class='bx bx-arrow-to-left'></i>
 				</div>
 			</div>
-			@includeIf('components.navigation_bars.navigation')
+			@includeIf('includes.navigation_bars.navigation')
 		</div>
 		<!--end sidebar wrapper -->
-		@includeIf('components.app_top_header')
+		@includeIf('includes.app_top_header')
 		<!--start page wrapper -->
 		<div class="page-wrapper">
 			<div class="page-content">
@@ -53,12 +53,12 @@
 			</div>
 		</div>
 		<!--end page wrapper -->
-		@includeIf("components.overlay")
-		@includeIf('components.back_to_top_btn')
-		@includeIf("components.footer")
+		@includeIf("includes.overlay")
+		@includeIf('includes.back_to_top_btn')
+		@includeIf("includes.footer")
 	</div>
 	<!--end wrapper-->
-  @includeIf('components.switcher')
+  @includeIf('includes.switcher')
 	<!-- Bootstrap JS -->
 	<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 	<!--plugins-->
