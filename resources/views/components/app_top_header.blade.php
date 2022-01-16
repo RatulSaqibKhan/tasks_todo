@@ -22,34 +22,46 @@
             <div class="dropdown-menu dropdown-menu-end">
               <div class="row row-cols-3 g-3 p-3">
                 <div class="col text-center">
-                  <div class="app-box mx-auto bg-gradient-cosmic text-white"><i class='bx bx-group'></i>
-                  </div>
-                  <div class="app-title">Teams</div>
+                  <a href="{{ url('/users') }}">
+                    <div class="app-box mx-auto bg-gradient-cosmic text-white"><i class='bx bx-group'></i>
+                    </div>
+                    <div class="app-title">Users</div>
+                  </a>
                 </div>
                 <div class="col text-center">
-                  <div class="app-box mx-auto bg-gradient-burning text-white"><i class='bx bx-atom'></i>
-                  </div>
-                  <div class="app-title">Projects</div>
+                  <a href="{{ url('/jobs') }}">
+                    <div class="app-box mx-auto bg-gradient-burning text-white"><i class='bx bx-crown'></i>
+                    </div>
+                    <div class="app-title">Jobs</div>
+                  </a>
                 </div>
                 <div class="col text-center">
-                  <div class="app-box mx-auto bg-gradient-lush text-white"><i class='bx bx-shield'></i>
-                  </div>
-                  <div class="app-title">Tasks</div>
+                  <a href="{{ url('/templates') }}">
+                    <div class="app-box mx-auto bg-gradient-lush text-white"><i class='bx bx-layer'></i>
+                    </div>
+                    <div class="app-title">Templates</div>
+                  </a>
                 </div>
                 <div class="col text-center">
-                  <div class="app-box mx-auto bg-gradient-kyoto text-dark"><i class='bx bx-notification'></i>
-                  </div>
-                  <div class="app-title">Feeds</div>
+                  <a href="{{ url('/clients') }}">
+                    <div class="app-box mx-auto bg-gradient-kyoto text-dark"><i class='bx bx-user-voice'></i>
+                    </div>
+                    <div class="app-title">Clients</div>
+                  </a>
                 </div>
                 <div class="col text-center">
-                  <div class="app-box mx-auto bg-gradient-blues text-dark"><i class='bx bx-file'></i>
-                  </div>
-                  <div class="app-title">Files</div>
+                  <a href="{{ url('/holidays') }}">
+                    <div class="app-box mx-auto bg-gradient-blues text-dark"><i class='bx bx-calendar-x'></i>
+                    </div>
+                    <div class="app-title">Holidays</div>
+                  </a>
                 </div>
                 <div class="col text-center">
-                  <div class="app-box mx-auto bg-gradient-moonlit text-white"><i class='bx bx-filter-alt'></i>
-                  </div>
-                  <div class="app-title">Alerts</div>
+                  <a href="{{ url('/companies') }}">
+                    <div class="app-box mx-auto bg-gradient-moonlit text-white"><i class='bx bx-home-heart'></i>
+                    </div>
+                    <div class="app-title">Company</div>
+                  </a>
                 </div>
               </div>
             </div>

@@ -3,7 +3,7 @@
   <li class="menu-label">TASK MANAGEMENT</li>
   <li>
     <a href="javascript:;" class="has-arrow">
-      <div class="parent-icon"><i class='lni lni-home'></i>
+      <div class="parent-icon"><i class='bx bx-crown'></i>
       </div>
       <div class="menu-title">Jobs</div>
     </a>
@@ -19,7 +19,7 @@
   <li class="menu-label">APP SETTINGS</li>
   <li>
     <a href="javascript:;" class="has-arrow">
-      <div class="parent-icon"><i class='lni lni-home'></i>
+      <div class="parent-icon"><i class='bx bx-home-heart'></i>
       </div>
       <div class="menu-title">Company</div>
     </a>
@@ -52,7 +52,7 @@
   </li>
   <li>
     <a href="javascript:;" class="has-arrow">
-      <div class="parent-icon"><i class='lni lni-users'></i>
+      <div class="parent-icon"><i class='bx bx-calendar-x'></i>
       </div>
       <div class="menu-title">Holidays</div>
     </a>
@@ -67,7 +67,7 @@
   </li>
   <li>
     <a href="javascript:;" class="has-arrow">
-      <div class="parent-icon"><i class='lni lni-users'></i>
+      <div class="parent-icon"><i class='bx bx-user-voice'></i>
       </div>
       <div class="menu-title">Clients</div>
     </a>
@@ -82,7 +82,7 @@
   </li>
   <li>
     <a href="javascript:;" class="has-arrow">
-      <div class="parent-icon"><i class='lni lni-users'></i>
+      <div class="parent-icon"><i class='bx bx-layer'></i>
       </div>
       <div class="menu-title">Templates</div>
     </a>
