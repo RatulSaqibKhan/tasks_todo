@@ -58,4 +58,40 @@ $(function () {
   }), $(".compose-mail-close").on("click", function () {
     $(".compose-mail-popup").hide()
   })
+
+  $(document).on('click', '.selectable-tr', function(e) {
+    $('.selectable-tr.selected-tr').not(this).toggleClass('selected-tr');
+    $(this).toggleClass('selected-tr');
+  });
+
+  $(document).on('click', '#edit-btn', function(e) {
+    e.preventDefault();
+    let edit_url = $('.selectable-tr.selected-tr').attr('data-edit-url');
+    if (edit_url) {
+      window.open(edit_url, '_blank')
+    }
+  });
+
+  $(document).on('click', '#delete-btn', function(e) {
+    e.preventDefault();
+    let delete_url = $('.selectable-tr.selected-tr').attr('data-delete-url');
+    if (delete_url) {
+      deleteConfirmationModal.show();
+      $('#delete-confirm-btn').attr('data-url', delete_url);
+    }
+  });
+
+  $(document).on('click', '#delete-confirm-btn', function(e) {
+    e.preventDefault();
+    let delete_url = $('#delete-confirm-btn').attr('data-url');
+    if (delete_url) {
+      deleteConfirmationModal.hide();
+      $('#delete-confirm-btn').attr('data-url', '')
+    }
+  })
+
+  var deleteConfirmationModal = new bootstrap.Modal(document.getElementById('deleteConfirmationModal'), {
+    backdrop: 'static',
+    keyboard: false
+  })
 });

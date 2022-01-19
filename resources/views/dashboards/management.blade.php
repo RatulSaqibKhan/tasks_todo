@@ -1,5 +1,9 @@
 @extends('mainframe')
 @section('page-title', 'Dashtrans - Bootstrap5 Admin Template')
+@section('styles')
+<link href="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.css') }}" rel="stylesheet" />
+<link href="{{ asset('assets/plugins/highcharts/css/highcharts-white.css') }}" rel="stylesheet" />
+@endsection
 @section('page-content')
 <div class="card shadow-none bg-transparent border-bottom border-2">
   <div class="card-body">
@@ -552,4 +556,13 @@
     </div>
   </div>
 </div>  
+@endsection
+@section('bottom-scripts')
+<!-- Vector map JavaScript -->
+<script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-2.0.2.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/vectormap/jquery-jvectormap-world-mill-en.js') }}"></script>
+<!-- highcharts js -->
+<script src="{{ asset('assets/plugins/highcharts/js/highcharts.js') }}"></script>
+<script src="{{ asset('assets/plugins/apexcharts-bundle/js/apexcharts.min.js') }}"></script>
+<script src="{{ asset('assets/js/index2.js') }}"></script>
 @endsection

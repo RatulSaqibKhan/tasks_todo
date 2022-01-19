@@ -192,11 +192,13 @@ a {
 
 	background: rgb(255 255 255 / 12%);
 
-	position: absolute;
+	position: fixed;
 
 	left: 250px;
 
 	right: 0;
+  
+  bottom: 0;
 
 	text-align: center;
 
@@ -4070,4 +4072,12 @@ body.bg-theme12 {
 
 	}
 
+}
+
+.selectable-tr:hover {
+  cursor: pointer;
+}
+
+.selected-tr {
+  background-color: #3949ab!important;
 }
