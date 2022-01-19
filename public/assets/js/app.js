@@ -85,7 +85,24 @@ $(function () {
     e.preventDefault();
     let delete_url = $('#delete-confirm-btn').attr('data-url');
     if (delete_url) {
-      deleteConfirmationModal.hide();
+      $.ajax({
+        url: delete_url,
+        data: {
+          _token: $('meta[name="csrf-token"]').attr('content')
+        },
+        type: 'DELETE'
+      }).done(function(response) {
+        if(response.status === 200) {
+          alert(response.secondaryMessage);
+        }
+        deleteConfirmationModal.hide();
+        reloadCurrentPage();
+      }).fail(function(response, xhr) {
+        console.log({
+          response,
+          xhr
+        });
+      });
       $('#delete-confirm-btn').attr('data-url', '')
     }
   })
@@ -93,5 +110,9 @@ $(function () {
   var deleteConfirmationModal = new bootstrap.Modal(document.getElementById('deleteConfirmationModal'), {
     backdrop: 'static',
     keyboard: false
-  })
+  });
+
+  function reloadCurrentPage() {
+    window.location.reload();
+  }
 });

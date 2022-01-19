@@ -16,7 +16,7 @@
   <link href="{{ asset('assets/plugins/metismenu/css/metisMenu.min.css') }}" rel="stylesheet" />
   <!-- loader-->
   <link href="{{ asset('assets/css/pace.min.css') }}" rel="stylesheet" />
-  <script src="{{ asset('assets/js/pace.min.js') }}"></script>
+  <script data-pace-options='{ "ajax": true }' src="{{ asset('assets/js/pace.min.js') }}"></script>
   <!-- Bootstrap CSS -->
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
