@@ -20,7 +20,6 @@ class User extends Authenticatable
         'designation',
         'phone_no',
         'address',
-        'password',
     ];
 
     /**

@@ -17,5 +17,10 @@ Route::middleware(['web', 'auth'])->group(function() {
 
     Route::prefix('users')->group(function() {
         Route::get('/', [UserController::class, 'index'])->name('user-list');
+        Route::get('/create', [UserController::class, 'create'])->name('user-create');
+        Route::post('/store', [UserController::class, 'store'])->name('user-store');
+        Route::get('/{user}/edit', [UserController::class, 'edit'])->name('user-edit');
+        Route::put('/{user}', [UserController::class, 'update'])->name('user-update');
+        Route::delete('/{user}', [UserController::class, 'destroy'])->name('user-destroy');
     });
 });
