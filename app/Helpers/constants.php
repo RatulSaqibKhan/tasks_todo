@@ -17,3 +17,13 @@ define('ACTIVE_STATUS_OPTIONS', [
     0 => 'Inactive',
     1 => 'Active',
 ]);
+
+define('DAY_BASIS', 1);
+define('HOUR_BASIS', 2);
+define('MNUTE_BASIS', 3);
+
+define('TASK_COMPLETION_BASIS', [
+    '1' => 'Day',
+    '2' => 'Hour',
+    '3' => 'Minute',
+]);
