@@ -49,6 +49,7 @@
     <div class="page-wrapper">
       <div class="page-content">
         @yield("page-content")
+        @includeIf("includes.form_modal")
         @includeIf("includes.delete_confirmation")
       </div>
     </div>

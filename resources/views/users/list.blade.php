@@ -1,7 +1,7 @@
 @extends('mainframe')
 @section('page-title', 'User List')
 @section('page-content')
-<x-breadcrumb title="User List" pageName="Users" buttonLink="{{ route('user-create') }}" buttonName="Create New" />
+<x-breadcrumb title="User List" pageName="Users" buttonLink="" buttonName="Create New" />
 
 <div class="card">
   <div class="card-body">

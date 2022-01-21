@@ -72,6 +72,11 @@ $(function () {
     }
   });
 
+  $(document).on('click', '#create-btn', function(e) {
+    e.preventDefault();
+    formFullScreenModal.show();
+  });
+
   $(document).on('click', '#delete-btn', function(e) {
     e.preventDefault();
     let delete_url = $('.selectable-tr.selected-tr').attr('data-delete-url');
@@ -108,6 +113,11 @@ $(function () {
   })
 
   var deleteConfirmationModal = new bootstrap.Modal(document.getElementById('deleteConfirmationModal'), {
+    backdrop: 'static',
+    keyboard: false
+  });
+
+  var formFullScreenModal = new bootstrap.Modal(document.getElementById('formFullScreenModal'), {
     backdrop: 'static',
     keyboard: false
   });

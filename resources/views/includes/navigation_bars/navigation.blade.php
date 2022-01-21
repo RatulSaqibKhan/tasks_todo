@@ -11,9 +11,6 @@
       <li>
         <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>List</a>
       </li>
-      <li>
-        <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>New Job</a>
-      </li>
     </ul>
   </li>
   <li class="menu-label">APP SETTINGS</li>
@@ -27,9 +24,6 @@
       <li>
         <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>List</a>
       </li>
-      <li>
-        <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>New Company</a>
-      </li>
     </ul>
   </li>
   <li>
@@ -41,9 +35,6 @@
     <ul>
       <li>
         <a href="{{ url('/users') }}"><i class="bx bx-right-arrow-alt"></i>List</a>
-      </li>
-      <li>
-        <a href="{{ url('/users/create') }}"><i class="bx bx-right-arrow-alt"></i>New User</a>
       </li>
       <li>
         <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>Task Assignment</a>
@@ -60,9 +51,6 @@
       <li>
         <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>List</a>
       </li>
-      <li>
-        <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>New Holiday</a>
-      </li>
     </ul>
   </li>
   <li>
@@ -75,9 +63,6 @@
       <li>
         <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>List</a>
       </li>
-      <li>
-        <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>New Client</a>
-      </li>
     </ul>
   </li>
   <li>
@@ -89,9 +74,6 @@
     <ul>
       <li>
         <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>List</a>
-      </li>
-      <li>
-        <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>New Template</a>
       </li>
       <li>
         <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>Assign Tasks</a>
