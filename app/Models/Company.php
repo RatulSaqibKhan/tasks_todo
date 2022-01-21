@@ -39,7 +39,8 @@ class Company extends Model
         'clients',
         'templates',
         'templateTasksMappings',
-        'jobs'
+        'jobs',
+        'jobTaskBreakdowns'
     ];
 
     public function users(): BelongsToMany
@@ -74,6 +75,11 @@ class Company extends Model
 
     public function jobs(): HasMany
     {
-        return $this->hasMany(Job::class, 'job_id');
+        return $this->hasMany(Job::class, 'company_id');
+    }
+
+    public function jobTaskBreakdowns(): HasMany
+    {
+        return $this->hasMany(JobTaskBreakDown::class, 'company_id');
     }
 }

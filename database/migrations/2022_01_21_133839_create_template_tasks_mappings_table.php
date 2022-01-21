@@ -15,6 +15,7 @@ class CreateTemplateTasksMappingsTable extends Migration
     {
         Schema::create('template_tasks_mappings', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('task_sequence');
             $table->unsignedBigInteger('company_id')->index();
             $table->unsignedBigInteger('template_id')->index();
             $table->unsignedBigInteger('task_id')->index();

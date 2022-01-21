@@ -3,41 +3,45 @@
 namespace App\Models;
 
 use App\Traits\DataModifiedUsersTrait;
-use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Job extends Model
+class JobTaskBreakDown extends Model
 {
-    use HasFactory, SoftDeletes, DataModifiedUsersTrait, CascadeSoftDeletes;
+    use HasFactory, SoftDeletes, DataModifiedUsersTrait;
 
     protected $fillable = [
         'company_id',
         'client_id',
         'job_type_id',
         'template_id',
-        'job_no',
-        'description',
-        'job_value',
-        'reference_no',
-        'receive_date',
-        'delivery_date',
-        'lead_time',
-        'remarks',
+        'job_id',
+        'task_id',
+        'task_sequence',
+        'task_completion_basis',
+        'task_completion_time',
+        'estimated_start_date',
+        'estimated_end_date',
+        'actual_start_date',
+        'actual_end_date',
+        'actual_task_completion_time',
+        'assigned_to',
         'attachment',
+        'remarks',
+        'completion_status',
         'created_by',
         'updated_by',
-        'deleted_by',
-    ];
-
-    protected $cascadeDeletes = [
-        'jobTaskBreakdowns'
+        'deleted_by'
     ];
 
     protected $dates = ['deleted_at'];
+
+    public function job(): BelongsTo
+    {
+        return $this->belongsTo(Job::class, 'job_id')->withDefault();
+    }
 
     public function company(): BelongsTo
     {
@@ -59,8 +63,13 @@ class Job extends Model
         return $this->belongsTo(Template::class, 'template_id')->withDefault();
     }
 
-    public function jobTaskBreakdowns(): HasMany
+    public function task(): BelongsTo
     {
-        return $this->hasMany(JobTaskBreakDown::class, 'job_id');
+        return $this->belongsTo(Task::class, 'task_id')->withDefault();
+    }
+
+    public function assignedUser(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'assigned_to')->withDefault();
     }
 }

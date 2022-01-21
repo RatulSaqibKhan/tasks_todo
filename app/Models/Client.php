@@ -33,7 +33,8 @@ class Client extends Model
     protected $dates = ['deleted_at'];
 
     protected $cascadeDeletes = [
-        'jobs'
+        'jobs',
+        'jobTaskBreakdowns'
     ];
 
     public function company(): BelongsTo
@@ -44,5 +45,10 @@ class Client extends Model
     public function jobs(): HasMany
     {
         return $this->hasMany(Job::class, 'client_id');
+    }
+
+    public function jobTaskBreakdowns(): HasMany
+    {
+        return $this->hasMany(JobTaskBreakDown::class, 'client_id');
     }
 }

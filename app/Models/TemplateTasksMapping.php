@@ -13,6 +13,7 @@ class TemplateTasksMapping extends Model
     use HasFactory, SoftDeletes, DataModifiedUsersTrait;
 
     public $fillable = [
+        'task_sequence',
         'company_id',
         'template_id',
         'task_id',
