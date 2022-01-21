@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTemplatesTable extends Migration
+class CreateTemplateTasksMappingsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreateTemplatesTable extends Migration
      */
     public function up()
     {
-        Schema::create('templates', function (Blueprint $table) {
+        Schema::create('template_tasks_mappings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->unsignedBigInteger('company_id')->index();
-            $table->unsignedBigInteger('job_type_id')->index()->nullable();
+            $table->unsignedBigInteger('template_id')->index();
+            $table->unsignedBigInteger('task_id')->index();
             $table->tinyInteger('task_completion_basis')->nullable()->comment("1=Day, 2=Hour, 3=Minute");
+            $table->string('task_completion_time')->nullable();
+            $table->tinyInteger('active_status')->default(1)->comment("0=No,1=Yes");
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
             $table->unsignedBigInteger('deleted_by')->nullable();
@@ -26,7 +28,8 @@ class CreateTemplatesTable extends Migration
             $table->softDeletes();
         
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
-            $table->foreign('job_type_id')->references('id')->on('job_types')->onDelete('cascade');
+            $table->foreign('template_id')->references('id')->on('templates')->onDelete('cascade');
+            $table->foreign('task_id')->references('id')->on('tasks')->onDelete('cascade');
         });
     }
 
@@ -37,6 +40,6 @@ class CreateTemplatesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('templates');
+        Schema::dropIfExists('template_tasks_mappings');
     }
 }

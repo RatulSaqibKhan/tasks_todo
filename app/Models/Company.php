@@ -36,6 +36,9 @@ class Company extends Model
     protected $cascadeDeletes = [
         'companyUserMappings',
         'holidays',
+        'clients',
+        'templates',
+        'templateTasksMappings',
     ];
 
     public function users(): BelongsToMany
@@ -51,5 +54,20 @@ class Company extends Model
     public function holidays(): HasMany
     {
         return $this->hasMany(Holiday::class, 'company_id');
+    }
+
+    public function clients(): HasMany
+    {
+        return $this->hasMany(Client::class, 'company_id');
+    }
+
+    public function templates(): HasMany
+    {
+        return $this->hasMany(Template::class, 'company_id');
+    }
+
+    public function templateTasksMappings(): HasMany
+    {
+        return $this->hasMany(TemplateTasksMapping::class, 'company_id');
     }
 }
