@@ -7,24 +7,26 @@ use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Client extends Model
+class Job extends Model
 {
     use HasFactory, SoftDeletes, DataModifiedUsersTrait, CascadeSoftDeletes;
 
     protected $fillable = [
         'company_id',
-        'name',
-        'email',
-        'address',
-        'attention',
-        'party_type',
-        'phone_no',
-        'fax',
-        'logo',
-        'active_status',
+        'client_id',
+        'job_type_id',
+        'template_id',
+        'job_no',
+        'description',
+        'job_value',
+        'reference_no',
+        'receive_date',
+        'delivery_date',
+        'lead_time',
+        'remarks',
+        'attachment',
         'created_by',
         'updated_by',
         'deleted_by',
@@ -32,17 +34,23 @@ class Client extends Model
 
     protected $dates = ['deleted_at'];
 
-    protected $cascadeDeletes = [
-        'jobs'
-    ];
-
     public function company(): BelongsTo
     {
         return $this->belongsTo(Company::class, 'company_id')->withDefault();
     }
 
-    public function jobs(): HasMany
+    public function client(): BelongsTo
     {
-        return $this->hasMany(Job::class, 'client_id');
+        return $this->belongsTo(Client::class, 'client_id')->withDefault();
+    }
+
+    public function jobType(): BelongsTo
+    {
+        return $this->belongsTo(JobType::class, 'job_type_id')->withDefault();
+    }
+
+    public function template(): BelongsTo
+    {
+        return $this->belongsTo(Template::class, 'template_id')->withDefault();
     }
 }

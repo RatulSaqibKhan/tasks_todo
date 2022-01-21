@@ -21,7 +21,8 @@ class JobType extends Model
     ];
 
     protected $cascadeDeletes = [
-        'templates'
+        'templates',
+        'jobs'
     ];
 
     protected $dates = ['deleted_at'];
@@ -29,5 +30,10 @@ class JobType extends Model
     public function templates()
     {
         return $this->hasMany(Template::class, 'job_type_id');
+    }
+
+    public function jobs()
+    {
+        return $this->hasMany(Job::class, 'job_type_id');
     }
 }

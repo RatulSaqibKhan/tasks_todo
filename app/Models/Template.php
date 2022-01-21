@@ -25,7 +25,8 @@ class Template extends Model
     ];
 
     protected $cascadeDeletes = [
-        'templateTasksMappings'
+        'templateTasksMappings',
+        'jobs'
     ];
 
     protected $dates = ['deleted_at'];
@@ -43,5 +44,10 @@ class Template extends Model
     public function templateTasksMappings(): HasMany
     {
         return $this->hasMany(TemplateTasksMapping::class, 'template_id');
+    }
+
+    public function jobs(): HasMany
+    {
+        return $this->hasMany(Job::class, 'template_id');
     }
 }

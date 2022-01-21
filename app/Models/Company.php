@@ -39,6 +39,7 @@ class Company extends Model
         'clients',
         'templates',
         'templateTasksMappings',
+        'jobs'
     ];
 
     public function users(): BelongsToMany
@@ -69,5 +70,10 @@ class Company extends Model
     public function templateTasksMappings(): HasMany
     {
         return $this->hasMany(TemplateTasksMapping::class, 'company_id');
+    }
+
+    public function jobs(): HasMany
+    {
+        return $this->hasMany(Job::class, 'job_id');
     }
 }
