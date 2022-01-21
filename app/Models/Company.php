@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\DataModifiedUsersTrait;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -13,7 +14,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Company extends Model
 {
-    use HasFactory, SoftDeletes, CascadeSoftDeletes;
+    use HasFactory, SoftDeletes, CascadeSoftDeletes, DataModifiedUsersTrait;
 
     protected $fillable = [
         'name',
@@ -36,21 +37,6 @@ class Company extends Model
         'companyUserMappings',
         'holidays',
     ];
-
-    public function createByUser(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by')->withDefault();
-    }
-
-    public function updateByUser(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'updated_by')->withDefault();
-    }
-
-    public function deleteByUser(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'deleted_by')->withDefault();
-    }
 
     public function users(): BelongsToMany
     {

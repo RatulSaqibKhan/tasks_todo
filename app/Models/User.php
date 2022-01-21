@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\DataModifiedUsersTrait;
 use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -14,7 +15,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes, CascadeSoftDeletes;
+    use Notifiable, SoftDeletes, CascadeSoftDeletes, DataModifiedUsersTrait;
 
     protected $fillable = [
         'name',
@@ -42,21 +43,6 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-
-    public function createByUser(): BelongsTo
-    {
-        return $this->belongsTo(self::class, 'created_by')->withDefault();
-    }
-
-    public function updateByUser(): BelongsTo
-    {
-        return $this->belongsTo(self::class, 'updated_by')->withDefault();
-    }
-
-    public function deleteByUser(): BelongsTo
-    {
-        return $this->belongsTo(self::class, 'deleted_by')->withDefault();
-    }
 
     public function role(): HasOneThrough
     {

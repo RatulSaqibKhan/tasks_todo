@@ -9,3 +9,11 @@ define("UPDATE_SUCCESS_MSG", "Data updated successfully!");
 define("UPDATE_FAILED_MSG", "Data updating failed!");
 define("DELETE_SUCCESS_MSG", "Data deleted successfully!");
 define("DELETE_FAILED_MSG", "Data deleting failed!");
+
+define('ACTIVE', 1);
+define('INACTIVE', 0);
+
+define('ACTIVE_STATUS_OPTIONS', [
+    0 => 'Inactive',
+    1 => 'Active',
+]);

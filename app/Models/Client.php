@@ -8,13 +8,21 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Holiday extends Model
+class Client extends Model
 {
     use HasFactory, SoftDeletes, DataModifiedUsersTrait;
 
     protected $fillable = [
-        'holiday',
         'company_id',
+        'name',
+        'email',
+        'address',
+        'attention',
+        'party_type',
+        'phone_no',
+        'fax',
+        'logo',
+        'active_status',
         'created_by',
         'updated_by',
         'deleted_by',
@@ -26,5 +34,4 @@ class Holiday extends Model
     {
         return $this->belongsTo(Company::class, 'company_id')->withDefault();
     }
-
 }

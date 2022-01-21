@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Traits\DataModifiedUsersTrait;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -9,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class UserRoleMapping extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, DataModifiedUsersTrait;
 
     protected $fllable = [
         'user_id',
@@ -31,18 +32,4 @@ class UserRoleMapping extends Model
         return $this->belongsTo(Role::class, 'role_id')->withDefault();
     }
 
-    public function createByUser(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by')->withDefault();
-    }
-
-    public function updateByUser(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'updated_by')->withDefault();
-    }
-
-    public function deleteByUser(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'deleted_by')->withDefault();
-    }
 }
