@@ -16,8 +16,6 @@
       </button>
       <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
         <a class="dropdown-item" id="create-btn" href="{{ $buttonLink ?? 'javascript:;' }}">{{ $buttonName ?? 'Create New'}}</a>
-        <a class="dropdown-item" id="edit-btn" href="javascript:;">Edit</a>
-        <a class="dropdown-item" id="delete-btn" href="javascript:;">Delete</a>
       </div>
     </div>
   </div>
