@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use App\Rules\UniqueUserEmailRule;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rules\Password;
 
 class UserRequest extends FormRequest
 {
@@ -37,8 +38,12 @@ class UserRequest extends FormRequest
             'designation' => 'nullable',
             'phone_no' => 'nullable',
             'address' => 'nullable',
-            'password' => 'required|min:8',
-            'confirm_password' => 'required|min:8,same:password',
+            'password' => ['required', 'string', Password::min(8)->mixedCase()
+                ->letters()
+                ->numbers()
+                ->symbols()
+                ->uncompromised()],
+            'confirm_password' => 'required|same:password',
         ];
     }
 }

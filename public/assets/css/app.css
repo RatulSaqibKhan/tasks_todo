@@ -4088,3 +4088,9 @@ body.bg-theme12 {
   margin: 0;
   background: transparent;
 }
+
+.error-msg {
+  color: #c62828!important;
+  font-style: italic;
+  font-weight: bold;
+}

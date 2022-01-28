@@ -31,12 +31,15 @@
             <td>{{ $user->phone_no }}</td>
             <td>
               <div class="d-flex align-items-center justify-content-center">
-                <button type="button" class="btn-custom btn-close-white dropdown-toggle-split font-18" data-bs-toggle="dropdown">
+                <button type="button" class="btn-custom btn-close-white dropdown-toggle-split font-18"
+                  data-bs-toggle="dropdown">
                   <i class="bx bx-dots-vertical-rounded"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
-                  <a class="dropdown-item" id="edit-btn" href="javascript:;" data-edit-url="{{ url('/users/'.$user->id.'/edit') }}" >Edit</a>
-                  <a class="dropdown-item" id="delete-btn" href="javascript:;" data-delete-url="{{ url('/users/'.$user->id) }}">Delete</a>
+                  <a class="dropdown-item" id="edit-btn" href="javascript:;"
+                    data-edit-url="{{ url('/users/'.$user->id.'/edit') }}">Edit</a>
+                  <a class="dropdown-item" id="delete-btn" href="javascript:;"
+                    data-delete-url="{{ url('/users/'.$user->id) }}">Delete</a>
                 </div>
               </div>
             </td>
@@ -51,4 +54,56 @@
     </div>
   </div>
 </div>
+@endsection
+@section('bottom-scripts')
+<script>
+  const create = () => {
+    $.ajax({
+      type: "GET",
+      url: "/users/create"
+    }).done((response) => {
+      if (response.status === 200) {
+        let modalTitle = formFullScreenModalDOM.querySelector('.modal-title');
+        let modalBody = formFullScreenModalDOM.querySelector('.modal-body');
+        modalTitle.innerHTML = response.title;
+        modalBody.innerHTML = response.view;
+      }
+    }).fail((response) => {
+      console.log(response);
+    })
+  }
+  $(document).on('click', '#form-submit-btn', (e) => {
+    e.preventDefault();
+    let formElement = $('#user-form');
+    submitForm(formElement);
+  });
+
+  const submitForm = (formElement) => {
+    let data = formElement.serialize();
+    let method = formElement.attr('method');
+    let url = formElement.attr('action');
+    $(".error-msg").empty();
+    $.ajax({
+      url: url,
+      type: method,
+      data: data,
+    }).done((response) => {
+      console.log(response);
+    }).fail((data) => {
+      if (data.status === 422) {
+        let errors = data.responseJSON.errors;
+        $.each(errors, function (errorIndex, errorValue) {
+          let errorDomElement, error_index, errorMessage;
+          errorDomElement = '' + errorIndex;
+          errorDomIndexArray = errorDomElement.split(".");
+          errorDomElement = '.' + errorDomIndexArray[0];
+          error_index = errorDomIndexArray[1];
+          errorMessage = errorValue[0];
+          $(".error-msg"+errorDomElement).html(errorMessage);
+        });
+      }
+      console.log(data);
+    });
+  } 
+</script>
 @endsection

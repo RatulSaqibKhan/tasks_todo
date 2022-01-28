@@ -43,81 +43,88 @@ $(function () {
     for (var e = window.location, o = $(".metismenu li a").filter(function () {
       return this.href == e
     }).addClass("").parent().addClass("mm-active"); o.is("li");) o = o.parent("").addClass("mm-show").parent("").addClass("mm-active")
-  }), $(function () {
+  });
+  $(function () {
     $("#menu").metisMenu()
-  }), $(".chat-toggle-btn").on("click", function () {
-    $(".chat-wrapper").toggleClass("chat-toggled")
-  }), $(".chat-toggle-btn-mobile").on("click", function () {
-    $(".chat-wrapper").removeClass("chat-toggled")
-  }), $(".email-toggle-btn").on("click", function () {
-    $(".email-wrapper").toggleClass("email-toggled")
-  }), $(".email-toggle-btn-mobile").on("click", function () {
-    $(".email-wrapper").removeClass("email-toggled")
-  }), $(".compose-mail-btn").on("click", function () {
-    $(".compose-mail-popup").show()
-  }), $(".compose-mail-close").on("click", function () {
-    $(".compose-mail-popup").hide()
-  })
-
-  $(document).on('click', '#edit-btn', function(e) {
-    e.preventDefault();
-    let edit_url = $(this).attr('data-edit-url');
-    if (edit_url) {
-      formFullScreenModal.show();
-    }
   });
+});
 
-  $(document).on('click', '#create-btn', function(e) {
-    e.preventDefault();
+const formFullScreenModalDOM = document.getElementById('formFullScreenModal');
+const deleteConfirmationModalDOM = document.getElementById('deleteConfirmationModal');
+
+const formModalDefaultContent = `<div class="modal-header">
+<h5 class="modal-title">Modal Form</h5>
+<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">Sorry you are Not Permitted!</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+<button type="button" class="btn btn-primary" id="form-submit-btn">Submit</button>
+</div>`;
+
+$(document).on('click', '#edit-btn', function (e) {
+  e.preventDefault();
+  let edit_url = $(this).attr('data-edit-url');
+  if (edit_url) {
     formFullScreenModal.show();
-  });
-
-  $(document).on('click', '#delete-btn', function(e) {
-    e.preventDefault();
-    let delete_url = $(this).attr('data-delete-url');
-    if (delete_url) {
-      deleteConfirmationModal.show();
-      $('#delete-confirm-btn').attr('data-url', delete_url);
-    }
-  });
-
-  $(document).on('click', '#delete-confirm-btn', function(e) {
-    e.preventDefault();
-    let delete_url = $('#delete-confirm-btn').attr('data-url');
-    if (delete_url) {
-      $.ajax({
-        url: delete_url,
-        data: {
-          _token: $('meta[name="csrf-token"]').attr('content')
-        },
-        type: 'DELETE'
-      }).done(function(response) {
-        if(response.status === 200) {
-          alert(response.secondaryMessage);
-        }
-        deleteConfirmationModal.hide();
-        reloadCurrentPage();
-      }).fail(function(response, xhr) {
-        console.log({
-          response,
-          xhr
-        });
-      });
-      $('#delete-confirm-btn').attr('data-url', '')
-    }
-  })
-
-  var deleteConfirmationModal = new bootstrap.Modal(document.getElementById('deleteConfirmationModal'), {
-    backdrop: 'static',
-    keyboard: false
-  });
-
-  var formFullScreenModal = new bootstrap.Modal(document.getElementById('formFullScreenModal'), {
-    backdrop: 'static',
-    keyboard: false
-  });
-
-  function reloadCurrentPage() {
-    window.location.reload();
   }
 });
+
+$(document).on('click', '#create-btn', function (e) {
+  e.preventDefault();
+  create();
+  formFullScreenModal.show();
+});
+
+$(document).on('click', '#delete-btn', function (e) {
+  e.preventDefault();
+  let delete_url = $(this).attr('data-delete-url');
+  if (delete_url) {
+    deleteConfirmationModal.show();
+    $('#delete-confirm-btn').attr('data-url', delete_url);
+  }
+});
+
+$(document).on('click', '#delete-confirm-btn', function (e) {
+  e.preventDefault();
+  let delete_url = $('#delete-confirm-btn').attr('data-url');
+  if (delete_url) {
+    $.ajax({
+      url: delete_url,
+      data: {
+        _token: $('meta[name="csrf-token"]').attr('content')
+      },
+      type: 'DELETE'
+    }).done(function (response) {
+      if (response.status === 200) {
+        alert(response.secondaryMessage);
+      }
+      deleteConfirmationModal.hide();
+      reloadCurrentPage();
+    }).fail(function (response, xhr) {
+      console.log({
+        response,
+        xhr
+      });
+    });
+    $('#delete-confirm-btn').attr('data-url', '')
+  }
+})
+
+var deleteConfirmationModal = new bootstrap.Modal(deleteConfirmationModalDOM, {
+  backdrop: 'static',
+  keyboard: false
+});
+var formFullScreenModal = new bootstrap.Modal(formFullScreenModalDOM, {
+  backdrop: 'static',
+  keyboard: false
+});
+
+formFullScreenModalDOM.addEventListener('hidden.bs.modal', function (event) {
+  let modalContent = this.querySelector('.modal-content');
+  modalContent.innerHTML = formModalDefaultContent;
+});
+
+function reloadCurrentPage() {
+  window.location.reload();
+}

@@ -33,6 +33,7 @@ class UserFormViewRenderAction implements ActionInterface
         }
 
         return [
+            'title' => "New User",
             'view' => $form ?? null,
             'status' => $status ?? null,
             'primaryMessage' => $primaryMessage ?? null,

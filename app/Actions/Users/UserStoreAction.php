@@ -5,6 +5,7 @@ namespace App\Actions\Users;
 use App\Interfaces\ActionInterface;
 use App\Models\User;
 use Exception;
+use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpFoundation\Response;
 
 class UserStoreAction implements ActionInterface
@@ -19,6 +20,7 @@ class UserStoreAction implements ActionInterface
     public function action()
     {
         try {
+            DB::beginTransaction();
             $user = new User();
             $user->name = $this->request->name;
             $user->email = $this->request->email;
@@ -27,11 +29,13 @@ class UserStoreAction implements ActionInterface
             $user->address = $this->request->address;
             $user->password = bcrypt($this->request->password);
             $user->save();
-            
+            DB::commit();
+
             $primaryMessage = \SUCCESS_MSG;
             $secondaryMessage = \SAVE_SUCCESS_MSG;
             $status = Response::HTTP_OK;
         } catch (Exception $e) {
+            DB::rollBack();
             $primaryMessage = \ERROR_MSG;
             $secondaryMessage = $e->getMessage();
             $status = Response::HTTP_INTERNAL_SERVER_ERROR;
