@@ -30,6 +30,14 @@ $user->id) ? 'PUT': 'POST', 'id' => 'user-form', 'autocomplete' => 'off', 'class
   {!! Form::password('confirm_password', ['class' => 'form-control', 'placeholder' => 'Retype Password', 'required']) !!}
   <span class="error-msg confirm_password"></span>
 </div>
+<div class="col-md-6">
+  {!! Form::label('company_id', 'Company', ['class' => 'form-label']) !!}
+  {!! Form::select('company_id[]', $companies ?? [], null, ['class' => 'form-control select2-elem-modal', 'multiple' => true, 'data-allow-clear' => "true"]) !!}
+</div>
+<div class="col-md-6">
+  {!! Form::label('role_id', 'User Role', ['class' => 'form-label']) !!}
+  {!! Form::select('role_id', $roles ?? [], null, ['class' => 'form-control select2-elem-modal', 'data-placeholder' => 'Select', 'data-allow-clear' => "true"]) !!}
+</div>
 <div class="col-12">
   {!! Form::label('address', 'User Address', ['class' => 'form-label']) !!}
   {!! Form::textarea('address', null, ['class' => 'form-control', 'placeholder' => 'User Address', 'rows' => 2]) !!}

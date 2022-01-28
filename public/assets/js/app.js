@@ -47,7 +47,31 @@ $(function () {
   $(function () {
     $("#menu").metisMenu()
   });
+
+  setSelect2();
 });
+
+function setSelect2() {
+  $('.select2-elem-modal').each(function () {
+    let placeholder = $(this).data('placeholder') || '';
+    let allowClear = Boolean($(this).data('allow-clear'));
+    $(this).select2({
+      theme: 'bootstrap4',
+      placeholder: placeholder,
+      allowClear: allowClear,
+      dropdownParent: $('#formFullScreenModal')
+    });
+  });
+  $('.select2-elem').each(function () {
+    let placeholder = $(this).data('placeholder') || '';
+    let allowClear = Boolean($(this).data('allow-clear'));
+    $(this).select2({
+      theme: 'bootstrap4',
+      placeholder: placeholder,
+      allowClear: allowClear,
+    });
+  });
+}
 
 const formFullScreenModalDOM = document.getElementById('formFullScreenModal');
 const deleteConfirmationModalDOM = document.getElementById('deleteConfirmationModal');

@@ -3,6 +3,8 @@
 namespace App\Actions\Users;
 
 use App\Interfaces\ActionInterface;
+use App\Models\Company;
+use App\Models\Role;
 use App\Models\User;
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,8 +21,12 @@ class UserFormViewRenderAction implements ActionInterface
     public function action()
     {
         try {
+            $companies = Company::pluck('name', 'id')->all();
+            $roles = Role::pluck('name', 'id')->all();
             $form = view('users.form', [
-                'user' => $this->user ?? null
+                'user' => $this->user ?? null,
+                'companies' => $companies,
+                'roles' => $roles,
             ])->render();
             
             $primaryMessage = \SUCCESS_MSG;

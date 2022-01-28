@@ -67,6 +67,7 @@
         let modalBody = formFullScreenModalDOM.querySelector('.modal-body');
         modalTitle.innerHTML = response.title;
         modalBody.innerHTML = response.view;
+        setSelect2();
       }
     }).fail((response) => {
       console.log(response);
