@@ -44,6 +44,9 @@ class UserRequest extends FormRequest
                 ->symbols()
                 ->uncompromised()],
             'confirm_password' => 'required|same:password',
+            'role_id' => 'required',
+            'company_id' => 'nullable|array',
+            'company_id.*' => 'nullable'
         ];
     }
 }

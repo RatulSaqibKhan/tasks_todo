@@ -32,11 +32,12 @@ $user->id) ? 'PUT': 'POST', 'id' => 'user-form', 'autocomplete' => 'off', 'class
 </div>
 <div class="col-md-6">
   {!! Form::label('company_id', 'Company', ['class' => 'form-label']) !!}
-  {!! Form::select('company_id[]', $companies ?? [], null, ['class' => 'form-control select2-elem-modal', 'multiple' => true, 'data-allow-clear' => "true"]) !!}
+  {!! Form::select('company_id[]', $companies ?? [], $company ?? null, ['class' => 'form-control select2-elem-modal', 'multiple' => true, 'data-allow-clear' => "true"]) !!}
+  <span class="error-msg company_id"></span>
 </div>
 <div class="col-md-6">
   {!! Form::label('role_id', 'User Role', ['class' => 'form-label']) !!}
-  {!! Form::select('role_id', $roles ?? [], null, ['class' => 'form-control select2-elem-modal', 'data-placeholder' => 'Select', 'data-allow-clear' => "true"]) !!}
+  {!! Form::select('role_id', $roles ?? [], $role ?? null, ['class' => 'form-control select2-elem-modal', 'data-placeholder' => 'Select', 'data-allow-clear' => "true"]) !!}
 </div>
 <div class="col-12">
   {!! Form::label('address', 'User Address', ['class' => 'form-label']) !!}

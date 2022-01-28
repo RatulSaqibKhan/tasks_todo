@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 trait DataModifiedUsersTrait
 {
 
-    protected static function bootModelTrait()
+    protected static function bootDataModifiedUsersTrait()
     {
         static::creating(function ($model) {
             if (in_array('created_by', $model->getFillable())) {

@@ -29,6 +29,12 @@ class UserStoreAction implements ActionInterface
             $user->address = $this->request->address;
             $user->password = bcrypt($this->request->password);
             $user->save();
+            if ($this->request->role_id) {
+                $userRoleAssignResponse = (new UserRoleAssignAction($user, $this->request->role_id))->action();
+            }
+            if ($this->request->company_id && \is_array($this->request->company_id) && count($this->request->company_id)) {
+                $companyUserMapping = (new CompanyUserAssignAction($user, $this->request->company_id))->action();
+            }
             DB::commit();
 
             $primaryMessage = \SUCCESS_MSG;
@@ -43,6 +49,8 @@ class UserStoreAction implements ActionInterface
 
         return [
             'user' => $user ?? null,
+            'userRoleAssignResponse' => $userRoleAssignResponse ?? null,
+            'companyUserMapping' => $companyUserMapping ?? null,
             'status' => $status ?? null,
             'primaryMessage' => $primaryMessage ?? null,
             'secondaryMessage' => $secondaryMessage ?? null,
