@@ -152,3 +152,7 @@ formFullScreenModalDOM.addEventListener('hidden.bs.modal', function (event) {
 function reloadCurrentPage() {
   window.location.reload();
 }
+
+$("#liveToastBtn").click(function(){
+  $("#liveToast").toast("show");
+});
