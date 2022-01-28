@@ -59,16 +59,11 @@ $(function () {
     $(".compose-mail-popup").hide()
   })
 
-  $(document).on('click', '.selectable-tr', function(e) {
-    $('.selectable-tr.selected-tr').not(this).toggleClass('selected-tr');
-    $(this).toggleClass('selected-tr');
-  });
-
   $(document).on('click', '#edit-btn', function(e) {
     e.preventDefault();
-    let edit_url = $('.selectable-tr.selected-tr').attr('data-edit-url');
+    let edit_url = $(this).attr('data-edit-url');
     if (edit_url) {
-      window.open(edit_url, '_blank')
+      formFullScreenModal.show();
     }
   });
 
@@ -79,7 +74,7 @@ $(function () {
 
   $(document).on('click', '#delete-btn', function(e) {
     e.preventDefault();
-    let delete_url = $('.selectable-tr.selected-tr').attr('data-delete-url');
+    let delete_url = $(this).attr('data-delete-url');
     if (delete_url) {
       deleteConfirmationModal.show();
       $('#delete-confirm-btn').attr('data-url', delete_url);

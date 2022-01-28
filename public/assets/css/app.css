@@ -4081,3 +4081,10 @@ body.bg-theme12 {
 .selected-tr {
   background-color: #3949ab!important;
 }
+
+.btn-custom {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+}
