@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Actions\Users\UserDataFetchAction;
 use App\Actions\Users\UserDestroyAction;
+use App\Actions\Users\UserFormViewRenderAction;
 use App\Actions\Users\UserStoreAction;
 use App\Actions\Users\UserUpdateAction;
 use App\Http\Requests\UserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
+use Exception;
+use Illuminate\View\View;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(): View
     {
         $data = (new UserDataFetchAction)->action();
 
@@ -21,9 +23,9 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('users.form', [
-            'user' => null
-        ]);
+        $response = (new UserFormViewRenderAction())->action();
+        
+        return response()->json($response);
     }
 
     public function store(UserRequest $request)
@@ -35,9 +37,9 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('users.form', [
-            'user' => $user
-        ]);
+        $response = (new UserFormViewRenderAction($user))->action();
+        
+        return response()->json($response);
     }
 
     public function update(UserRequest $request, User $user)
