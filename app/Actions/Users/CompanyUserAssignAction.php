@@ -5,26 +5,45 @@ namespace App\Actions\Users;
 use App\Interfaces\ActionInterface;
 use App\Models\CompanyUserMapping;
 use App\Models\User;
-use App\Models\UserRoleMapping;
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
 
 class CompanyUserAssignAction implements ActionInterface
 {
-    protected $user, $company_id;
+    /**
+     * @var object
+     */
+    protected object $user;
 
-    public function __construct(User $user, $company_id)
+    /**
+     * @var array
+     */
+    protected array $company_ids;
+
+    /**
+     * Constructor of CompanyUserAssignAction
+     * 
+     * @param App\Models\User
+     * @param array $company_ids
+     * 
+     */
+    public function __construct(User $user, array $company_ids)
     {
         $this->user = $user;
-        $this->company_id = $company_id;
+        $this->company_ids = $company_ids;
     }
 
-    public function action()
+    /**
+     * Assign user to multiple companies
+     * 
+     * @return array
+     */
+    public function action(): array
     {
         try {
             CompanyUserMapping::where('user_id', $this->user->id)->forceDelete();
             $companyUserMappings = [];
-            foreach ($this->company_id as $company_id) {
+            foreach ($this->company_ids as $company_id) {
                 $companyUserMapping = new CompanyUserMapping();
                 $companyUserMapping->user_id = $this->user->id;
                 $companyUserMapping->company_id = $company_id;

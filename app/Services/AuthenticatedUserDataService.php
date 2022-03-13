@@ -4,7 +4,12 @@ namespace App\Services;
 
 class AuthenticatedUserDataService
 {
-    public function setData()
+    /**
+     * Set user data in session
+     * 
+     * @return void
+     */
+    public function setData(): void
     {
         $authUser = auth()->user();
         \session()->put('userid', $authUser->id);

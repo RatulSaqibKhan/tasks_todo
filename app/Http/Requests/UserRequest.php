@@ -13,12 +13,17 @@ class UserRequest extends FormRequest
      *
      * @return bool
      */
-    public function authorize()
+    public function authorize(): bool
     {
         return auth()->check();
     }
 
-    public function messages()
+    /**
+     * Messages
+     * 
+     * @return array
+     */
+    public function messages(): array
     {
         return [
             'required' => "Required field",
@@ -30,7 +35,7 @@ class UserRequest extends FormRequest
      *
      * @return array
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             'name' => 'required',
@@ -38,11 +43,16 @@ class UserRequest extends FormRequest
             'designation' => 'nullable',
             'phone_no' => 'nullable',
             'address' => 'nullable',
-            'password' => ['required', 'string', Password::min(8)->mixedCase()
-                ->letters()
-                ->numbers()
-                ->symbols()
-                ->uncompromised()],
+            'password' => [
+                'required',
+                'string',
+                Password::min(8)
+                    ->mixedCase()
+                    ->letters()
+                    ->numbers()
+                    ->symbols()
+                    ->uncompromised()
+            ],
             'confirm_password' => 'required|same:password',
             'role_id' => 'required',
             'company_id' => 'nullable|array',

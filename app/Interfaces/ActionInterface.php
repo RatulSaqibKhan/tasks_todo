@@ -4,5 +4,10 @@ namespace App\Interfaces;
 
 interface ActionInterface
 {
-    public function action();
+    /**
+     * Action method definition
+     * 
+     * @return array
+     */
+    public function action(): array;
 }

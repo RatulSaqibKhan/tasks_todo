@@ -10,15 +10,34 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserRoleAssignAction implements ActionInterface
 {
-    protected $user, $role_id;
+    /**
+     * @var object
+     */
+    protected object $user;
 
-    public function __construct(User $user, $role_id)
+    /**
+     * @var int
+     */
+    protected int $role_id;
+
+    /**
+     * Constructor
+     * 
+     * @param App\Models\User
+     * @param int
+     */
+    public function __construct(User $user, int $role_id)
     {
         $this->user = $user;
         $this->role_id = $role_id;
     }
 
-    public function action()
+    /**
+     * Set user role
+     * 
+     * @return array
+     */
+    public function action(): array
     {
         try {
             $userRoleMapping = UserRoleMapping::firstOrNew(['user_id' => $this->user->id]);

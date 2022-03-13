@@ -9,7 +9,12 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserDataFetchAction implements ActionInterface
 {
-    public function action()
+    /**
+     * Fetch User Data
+     * 
+     * @return array
+     */
+    public function action(): array
     {
         try {
             $data = User::query()->orderBy('id', 'desc')->paginate();

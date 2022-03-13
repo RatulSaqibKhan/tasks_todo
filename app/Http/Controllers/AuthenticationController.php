@@ -5,24 +5,40 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AuthenticatedRequest;
 use App\Services\AuthenticatedUserDataService;
 use Exception;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 
 class AuthenticationController extends Controller
 {
+    /**
+     * View Login page
+     * 
+     * @return View
+     */
     public function login(): View
     {
         return view('login');
     }
 
-    public function application()
+    /**
+     * Redirect to application dashboard for authorized user otherwise to login page
+     * 
+     * @return Illuminate\Http\RedirectResponse
+     */
+    public function application(): RedirectResponse
     {
         $redirection_url = (auth()->check() && auth()->user()->id) ? '/dashboard' : '/login';
 
         return redirect($redirection_url);
     }
 
-    public function signin(AuthenticatedRequest $request)
+    /**
+     * User Authentication
+     * 
+     * @param App\Http\Requests\AuthenticatedRequest
+     * @return Illuminate\Http\RedirectResponse
+     */
+    public function signin(AuthenticatedRequest $request): RedirectResponse
     {
         try {
             if (\auth()->attempt($request->except('_token'))) {
@@ -37,7 +53,12 @@ class AuthenticationController extends Controller
         return redirect()->back()->withInput()->withErrorMessage($error_msg ?? null);
     }
 
-    public function logout()
+    /**
+     * Logout from the application
+     * 
+     * @return Illuminate\Http\RedirectResponse
+     */
+    public function logout(): RedirectResponse
     {
         auth()->logout();
         session()->flush();

@@ -9,14 +9,27 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserDestroyAction implements ActionInterface
 {
-    protected $user;
+    /**
+     * @var object 
+     */
+    protected object $user;
 
+    /**
+     * Constructor
+     * 
+     * @param App\Models\User
+     */
     public function __construct(User $user)
     {
         $this->user = $user;
     }
 
-    public function action()
+    /**
+     * Delete user
+     * 
+     * @return array
+     */
+    public function action(): array
     {
         try {
             $this->user->delete();

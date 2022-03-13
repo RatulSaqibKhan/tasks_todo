@@ -15,7 +15,7 @@ class UniqueUserEmailRule implements Rule
      */
     public function __construct()
     {
-        return true;
+        return auth()->check();
     }
 
     /**
@@ -25,7 +25,7 @@ class UniqueUserEmailRule implements Rule
      * @param  mixed  $value
      * @return bool
      */
-    public function passes($attribute, $value)
+    public function passes($attribute, $value): bool
     {
         $value = strtoupper($value);
         $user = request()->route('user') ?? null;
@@ -43,7 +43,7 @@ class UniqueUserEmailRule implements Rule
      *
      * @return string
      */
-    public function message()
+    public function message(): string
     {
         return 'This email already exists.';
     }

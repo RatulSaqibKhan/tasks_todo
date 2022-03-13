@@ -11,14 +11,27 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserFormViewRenderAction implements ActionInterface
 {
+    /**
+     * @var null|object
+     */
     protected $user;
 
+    /**
+     * Constructor
+     * 
+     * @param null|App\Models\User
+     */
     public function __construct(User $user = null)
     {
         $this->user = $user;
     }
 
-    public function action()
+    /**
+     * Form Viewer
+     * 
+     * @return array
+     */
+    public function action(): array
     {
         try {
             $companies = Company::pluck('name', 'id')->all();

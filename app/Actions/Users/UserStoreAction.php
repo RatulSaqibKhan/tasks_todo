@@ -2,6 +2,7 @@
 
 namespace App\Actions\Users;
 
+use App\Http\Requests\UserRequest;
 use App\Interfaces\ActionInterface;
 use App\Models\User;
 use Exception;
@@ -10,14 +11,27 @@ use Symfony\Component\HttpFoundation\Response;
 
 class UserStoreAction implements ActionInterface
 {
-    protected $request;
+    /**
+     * @var App\Http\Requests\UserRequest
+     */
+    protected UserRequest $request;
 
-    public function __construct($request)
+    /**
+     * Constructor
+     * 
+     * @param App\Http\Requests\UserRequest
+     */
+    public function __construct(UserRequest $request)
     {
         $this->request = $request;
     }
 
-    public function action()
+    /**
+     * Store new User, set role and assign to multiple factories
+     * 
+     * @return array
+     */
+    public function action(): array
     {
         try {
             DB::beginTransaction();
