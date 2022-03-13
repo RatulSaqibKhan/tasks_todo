@@ -90,6 +90,7 @@ $(document).on('click', '#edit-btn', function (e) {
   e.preventDefault();
   let edit_url = $(this).attr('data-edit-url');
   if (edit_url) {
+    edit(edit_url);
     formFullScreenModal.show();
   }
 });

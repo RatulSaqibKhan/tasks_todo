@@ -36,10 +36,13 @@ class UserFormViewRenderAction implements ActionInterface
         try {
             $companies = Company::pluck('name', 'id')->all();
             $roles = Role::pluck('name', 'id')->all();
+            $company_ids = $this->user && $this->user->companyUserMappings->count() ? $this->user->companyUserMappings->pluck('company_id')->toArray() : null;
+            $role_id = $this->user && $this->user->userRoleMappings->count() ? $this->user->userRoleMappings->first()->role_id : null;
             $form = view('users.form', [
                 'user' => $this->user ?? null,
                 'companies' => $companies,
                 'roles' => $roles,
+                'role_id' => $role_id,
             ])->render();
             
             $primaryMessage = \SUCCESS_MSG;

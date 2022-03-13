@@ -8,6 +8,7 @@ use App\Actions\Users\UserFormViewRenderAction;
 use App\Actions\Users\UserStoreAction;
 use App\Actions\Users\UserUpdateAction;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\UserUpdateRequest;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -68,11 +69,11 @@ class UserController extends Controller
      /**
      * Update existing User
      * 
-     * @param App\Http\Requests\UserRequest
+     * @param App\Http\Requests\UserUpdateRequest
      * @param App\Models\User
      * @return JsonResponse
      */
-    public function update(UserRequest $request, User $user): JsonResponse
+    public function update(UserUpdateRequest $request, User $user): JsonResponse
     {
         $response = (new UserUpdateAction($request, $user))->action();
         

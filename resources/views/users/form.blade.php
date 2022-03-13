@@ -20,24 +20,27 @@ $user->id) ? 'PUT': 'POST', 'id' => 'user-form', 'autocomplete' => 'off', 'class
   {!! Form::text('phone_no', null, ['class' => 'form-control', 'placeholder' => 'User Phone No']) !!}
   <span class="error-msg phone_no"></span>
 </div>
-<div class="col-md-6">
-  {!! Form::label('password', 'User Password', ['class' => 'form-label']) !!}
-  {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'User Password', 'required']) !!}
-  <span class="error-msg password"></span>
-</div>
-<div class="col-md-6">
-  {!! Form::label('confirm_password', 'Confirm Password', ['class' => 'form-label']) !!}
-  {!! Form::password('confirm_password', ['class' => 'form-control', 'placeholder' => 'Retype Password', 'required']) !!}
-  <span class="error-msg confirm_password"></span>
-</div>
+@if(!$user || !$user->id)
+  <div class="col-md-6">
+    {!! Form::label('password', 'User Password', ['class' => 'form-label']) !!}
+    {!! Form::password('password', ['class' => 'form-control', 'placeholder' => 'User Password', 'required']) !!}
+    <span class="error-msg password"></span>
+  </div>
+  <div class="col-md-6">
+    {!! Form::label('confirm_password', 'Confirm Password', ['class' => 'form-label']) !!}
+    {!! Form::password('confirm_password', ['class' => 'form-control', 'placeholder' => 'Retype Password', 'required']) !!}
+    <span class="error-msg confirm_password"></span>
+  </div>
+@endif
 <div class="col-md-6">
   {!! Form::label('company_id', 'Company', ['class' => 'form-label']) !!}
-  {!! Form::select('company_id[]', $companies ?? [], $company ?? null, ['class' => 'form-control select2-elem-modal', 'multiple' => true, 'data-allow-clear' => "true"]) !!}
+  {!! Form::select('company_id[]', $companies ?? [], $company_ids ?? null, ['class' => 'form-control select2-elem-modal', 'multiple' => true, 'data-allow-clear' => "true"]) !!}
   <span class="error-msg company_id"></span>
 </div>
 <div class="col-md-6">
   {!! Form::label('role_id', 'User Role', ['class' => 'form-label']) !!}
-  {!! Form::select('role_id', $roles ?? [], $role ?? null, ['class' => 'form-control select2-elem-modal', 'data-placeholder' => 'Select', 'data-allow-clear' => "true"]) !!}
+  {!! Form::select('role_id', $roles ?? [], $role_id ?? null, ['class' => 'form-control select2-elem-modal', 'data-placeholder' => 'Select', 'data-allow-clear' => "true"]) !!}
+  <span class="error-msg role_id"></span>
 </div>
 <div class="col-12">
   {!! Form::label('address', 'User Address', ['class' => 'form-label']) !!}

@@ -73,6 +73,22 @@
       console.log(response);
     })
   }
+  const edit = (edit_url) => {
+    $.ajax({
+      type: "GET",
+      url: edit_url
+    }).done((response) => {
+      if (response.status === 200) {
+        let modalTitle = formFullScreenModalDOM.querySelector('.modal-title');
+        let modalBody = formFullScreenModalDOM.querySelector('.modal-body');
+        modalTitle.innerHTML = response.title;
+        modalBody.innerHTML = response.view;
+        setSelect2();
+      }
+    }).fail((response) => {
+      console.log(response);
+    })
+  }
   $(document).on('click', '#form-submit-btn', (e) => {
     e.preventDefault();
     let formElement = $('#user-form');
