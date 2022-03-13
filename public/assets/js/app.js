@@ -120,16 +120,24 @@ $(document).on('click', '#delete-confirm-btn', function (e) {
       },
       type: 'DELETE'
     }).done(function (response) {
-      if (response.status === 200) {
-        alert(response.secondaryMessage);
-      }
       deleteConfirmationModal.hide();
-      reloadCurrentPage();
+      $('#toast-icon-container').html('<i class="'+ response.iconClass +'"></i>')
+      $('#toast-primary-msg').html(response.primaryMessage)
+      $('#toast-secondary-msg').html(response.secondaryMessage)
+      showToast();
+      if (response.status === 200) {
+        reloadCurrentPage();
+      }
     }).fail(function (response, xhr) {
       console.log({
         response,
         xhr
       });
+      deleteConfirmationModal.hide();
+      $('#toast-icon-container').html('<i class="'+ response.iconClass +'"></i>')
+      $('#toast-primary-msg').html(response.primaryMessage)
+      $('#toast-secondary-msg').html(response.secondaryMessage)
+      showToast();
     });
     $('#delete-confirm-btn').attr('data-url', '')
   }
@@ -150,9 +158,11 @@ formFullScreenModalDOM.addEventListener('hidden.bs.modal', function (event) {
 });
 
 function reloadCurrentPage() {
-  window.location.reload();
+  setTimeout(function() {
+    window.location.reload();
+  }, 3000)
 }
 
-$("#liveToastBtn").click(function(){
+function showToast(){
   $("#liveToast").toast("show");
-});
+}

@@ -55,10 +55,12 @@ class CompanyUserAssignAction implements ActionInterface
             $primaryMessage = \SUCCESS_MSG;
             $secondaryMessage = \SAVE_SUCCESS_MSG;
             $status = Response::HTTP_OK;
+            $iconClass = 'bx bxs-message-square-check';
         } catch (Exception $e) {
             $primaryMessage = \ERROR_MSG;
             $secondaryMessage = $e->getMessage();
             $status = Response::HTTP_INTERNAL_SERVER_ERROR;
+            $iconClass = 'bx bxs-message-square-error';
         }
 
         return [
@@ -66,6 +68,7 @@ class CompanyUserAssignAction implements ActionInterface
             'status' => $status ?? null,
             'primaryMessage' => $primaryMessage ?? null,
             'secondaryMessage' => $secondaryMessage ?? null,
+            'iconClass' => $iconClass ?? null,
         ];
     }
 }

@@ -53,6 +53,7 @@
         @yield("page-content")
         @includeIf("includes.form_modal")
         @includeIf("includes.delete_confirmation")
+        @includeIf("includes.toastr")
       </div>
     </div>
     <!--end page wrapper -->

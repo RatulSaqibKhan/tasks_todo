@@ -54,22 +54,6 @@
     </div>
   </div>
 </div>
-<button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button>
-<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
-  <div id="liveToast" class="toast bg-transparent border-0" role="alert" aria-live="assertive" aria-atomic="true">
-    <div class="alert border-0 alert-dismissible fade show py-2">
-      <div class="d-flex align-items-center">
-        <div class="font-35 text-white"><i class='bx bxs-message-square-x'></i>
-        </div>
-        <div class="ms-3">
-          <h6 class="mb-0 text-white">Danger Alerts</h6>
-          <div class="text-white">A simple danger alert—check it out!</div>
-        </div>
-      </div>
-      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-    </div>
-  </div>
-</div>
 @endsection
 @section('bottom-scripts')
 <script>
@@ -105,10 +89,14 @@
       type: method,
       data: data,
     }).done((response) => {
+      $('#toast-icon-container').html('<i class="'+ response.iconClass +'"></i>')
+      $('#toast-primary-msg').html(response.primaryMessage)
+      $('#toast-secondary-msg').html(response.secondaryMessage)
+      showToast();
       if (response.status === 200) {
-
+        formFullScreenModal.hide();
+        reloadCurrentPage();
       }
-      console.log(response);
     }).fail((data) => {
       if (data.status === 422) {
         let errors = data.responseJSON.errors;
