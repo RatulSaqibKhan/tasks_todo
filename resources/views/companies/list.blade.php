@@ -58,6 +58,9 @@
         </tbody>
       </table>
     </div>
+    <div class="d-flex justify-content-center">
+      {{ $companies->appends(request()->except('page'))->links() }}
+    </div>
   </div>
 </div>
 @endsection
