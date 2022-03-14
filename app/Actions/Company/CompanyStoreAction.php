@@ -61,9 +61,7 @@ class CompanyStoreAction implements ActionInterface
         return [
             'company' => $company ?? null,
             'status' => $status ?? null,
-            'primaryMessage' => $primaryMessage ?? null,
-            'secondaryMessage' => $secondaryMessage ?? null,
-            'iconClass' => $iconClass ?? null,
+            'toastContainer' => view('includes.toastr_content', \compact('iconClass', 'primaryMessage', 'secondaryMessage'))->render(),
         ];
     }
 }

@@ -108,9 +108,7 @@
       type: method,
       data: data,
     }).done((response) => {
-      $('#toast-icon-container').html('<i class="'+ response.iconClass +'"></i>')
-      $('#toast-primary-msg').html(response.primaryMessage)
-      $('#toast-secondary-msg').html(response.secondaryMessage)
+      $('#liveToast').html(response.toastContainer)
       showToast();
       if (response.status === 200) {
         formFullScreenModal.hide();

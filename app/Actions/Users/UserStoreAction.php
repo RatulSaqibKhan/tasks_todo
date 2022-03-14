@@ -68,9 +68,7 @@ class UserStoreAction implements ActionInterface
             'userRoleAssignResponse' => $userRoleAssignResponse ?? null,
             'companyUserMapping' => $companyUserMapping ?? null,
             'status' => $status ?? null,
-            'primaryMessage' => $primaryMessage ?? null,
-            'secondaryMessage' => $secondaryMessage ?? null,
-            'iconClass' => $iconClass ?? null,
+            'toastContainer' => view('includes.toastr_content', \compact('iconClass', 'primaryMessage', 'secondaryMessage'))->render(),
         ];
     }
 }

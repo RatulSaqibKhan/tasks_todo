@@ -122,9 +122,7 @@ $(document).on('click', '#delete-confirm-btn', function (e) {
       type: 'DELETE'
     }).done(function (response) {
       deleteConfirmationModal.hide();
-      $('#toast-icon-container').html('<i class="'+ response.iconClass +'"></i>')
-      $('#toast-primary-msg').html(response.primaryMessage)
-      $('#toast-secondary-msg').html(response.secondaryMessage)
+      $('#liveToast').html(response.toastContainer)
       showToast();
       if (response.status === 200) {
         reloadCurrentPage();
@@ -135,9 +133,7 @@ $(document).on('click', '#delete-confirm-btn', function (e) {
         xhr
       });
       deleteConfirmationModal.hide();
-      $('#toast-icon-container').html('<i class="'+ response.iconClass +'"></i>')
-      $('#toast-primary-msg').html(response.primaryMessage)
-      $('#toast-secondary-msg').html(response.secondaryMessage)
+      $('#liveToast').html(response.toastContainer)
       showToast();
     });
     $('#delete-confirm-btn').attr('data-url', '')

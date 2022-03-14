@@ -48,9 +48,7 @@ class UserDestroyAction implements ActionInterface
         return [
             'user' => $this->user ?? null,
             'status' => $status ?? null,
-            'primaryMessage' => $primaryMessage ?? null,
-            'secondaryMessage' => $secondaryMessage ?? null,
-            'iconClass' => $iconClass ?? null,
+            'toastContainer' => view('includes.toastr_content', \compact('iconClass', 'primaryMessage', 'secondaryMessage'))->render(),
         ];
     }
 }
