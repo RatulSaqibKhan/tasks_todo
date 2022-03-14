@@ -23,7 +23,7 @@
   <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet">
-  <title>TODO Tasks - @yield('page-title')</title>
+  <title>@yield('page-title') - TODO Tasks</title>
   @yield('styles')
   @yield('head-scripts')
 </head>

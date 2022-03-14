@@ -1,12 +1,12 @@
 @extends('mainframe')
-@section('page-title', 'User List')
+@section('page-title', 'Company List')
 @section('page-content')
-<x-breadcrumb title="User List" pageName="Users" buttonLink="" buttonName="Create New" />
+<x-breadcrumb title="Company List" pageName="Companies" buttonLink="" buttonName="Create New" />
 
 <div class="card">
   <div class="card-body">
     <div class="card-title">
-      <h5 class="mb-0">User List</h5>
+      <h5 class="mb-0">Company List</h5>
     </div>
     <hr />
     <div class="table-responsive">
@@ -14,21 +14,27 @@
         <thead>
           <tr>
             <th>SL</th>
-            <th>User Name</th>
-            <th>User Email</th>
-            <th>Designation</th>
+            <th>Company Name</th>
+            <th>Email</th>
+            <th>Attention</th>
             <th>Phone No</th>
+            <th>Address</th>
+            <th>Party Type</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          @forelse ($users as $user)
+          @forelse ($companies as $company)
           <tr>
             <td>{{ $loop->iteration }}</td>
-            <td>{{ $user->name }}</td>
-            <td>{{ $user->email }}</td>
-            <td>{{ $user->designation }}</td>
-            <td>{{ $user->phone_no }}</td>
+            <td>{{ $company->name }}</td>
+            <td>{{ $company->email }}</td>
+            <td>{{ $company->attention }}</td>
+            <td>{{ $company->phone_no }}</td>
+            <td>{{ $company->address }}</td>
+            <td>{{ $company->party_type }}</td>
+            <td>{{ array_key_exists($company->active_status, ACTIVE_STATUS_OPTIONS) ? ACTIVE_STATUS_OPTIONS[$company->active_status] : $company->active_status }}</td>
             <td>
               <div class="d-flex align-items-center justify-content-center">
                 <button type="button" class="btn-custom btn-close-white dropdown-toggle-split font-18"
@@ -37,16 +43,16 @@
                 </button>
                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-lg-end">
                   <a class="dropdown-item" id="edit-btn" href="javascript:;"
-                    data-edit-url="{{ url('/users/'.$user->id.'/edit') }}">Edit</a>
+                    data-edit-url="{{ url('/companies/'.$company->id.'/edit') }}">Edit</a>
                   <a class="dropdown-item" id="delete-btn" href="javascript:;"
-                    data-delete-url="{{ url('/users/'.$user->id) }}">Delete</a>
+                    data-delete-url="{{ url('/companies/'.$company->id) }}">Delete</a>
                 </div>
               </div>
             </td>
           </tr>
           @empty
           <tr>
-            <th colspan="5" class="text-center">No Data Found</th>
+            <th colspan="9" class="text-center">No Data Found</th>
           </tr>
           @endforelse
         </tbody>
@@ -60,7 +66,7 @@
   const create = () => {
     $.ajax({
       type: "GET",
-      url: "/users/create"
+      url: "/companies/create"
     }).done((response) => {
       if (response.status === 200) {
         let modalTitle = formFullScreenModalDOM.querySelector('.modal-title');
@@ -91,19 +97,28 @@
   }
   $(document).on('click', '#form-submit-btn', (e) => {
     e.preventDefault();
-    let formElement = $('#user-form');
+    let formElement = $('#company-form');
     submitForm(formElement);
   });
 
   const submitForm = (formElement) => {
-    let data = formElement.serialize();
+    let formData = new FormData(document.getElementById("company-form"));
+    formData.append("name", formElement.find('[name="name"]').val())
     let method = formElement.attr('method');
     let url = formElement.attr('action');
+    let enctype = formElement.attr('enctype');
     $(".error-msg").empty();
     $.ajax({
       url: url,
       type: method,
-      data: data,
+      data: formData,
+      enctype: enctype,
+      processData: false,
+      contentType: false,
+      cache : false,
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
     }).done((response) => {
       $('#toast-icon-container').html('<i class="'+ response.iconClass +'"></i>')
       $('#toast-primary-msg').html(response.primaryMessage)
@@ -113,9 +128,11 @@
         formFullScreenModal.hide();
         reloadCurrentPage();
       }
-    }).fail((data) => {
-      if (data.status === 422) {
-        let errors = data.responseJSON.errors;
+    }).fail((response, status, error) => {
+      console.log([response, status, error])
+      let resData = JSON.parse(response.responseText);
+      if (response.status === 422) {
+        let errors = resData.errors;
         $.each(errors, function (errorIndex, errorValue) {
           let errorDomElement, error_index, errorMessage;
           errorDomElement = '' + errorIndex;
@@ -126,7 +143,6 @@
           $(".error-msg"+errorDomElement).html(errorMessage);
         });
       }
-      console.log(data);
     });
   } 
 </script>
