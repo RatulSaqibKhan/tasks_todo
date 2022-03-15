@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -32,5 +33,14 @@ Route::middleware(['web', 'auth'])->group(function() {
         Route::get('/{company}/edit', [CompanyController::class, 'edit'])->name('companies.edit');
         Route::put('/{company}', [CompanyController::class, 'update'])->name('companies.update');
         Route::delete('/{company}', [CompanyController::class, 'destroy'])->name('companies.destroy');
+    });
+
+    Route::prefix('holidays')->group(function() {
+        Route::get('/', [HolidayController::class, 'index'])->name('holidays.list');
+        Route::get('/create', [HolidayController::class, 'create'])->name('holidays.create');
+        Route::post('/store', [HolidayController::class, 'store'])->name('holidays.store');
+        Route::get('/{holiday}/edit', [HolidayController::class, 'edit'])->name('holidays.edit');
+        Route::put('/{holiday}', [HolidayController::class, 'update'])->name('holidays.update');
+        Route::delete('/{holiday}', [HolidayController::class, 'destroy'])->name('holidays.destroy');
     });
 });

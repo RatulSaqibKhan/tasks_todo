@@ -49,7 +49,7 @@
     </a>
     <ul>
       <li>
-        <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>List</a>
+        <a href="{{ url('/holidays') }}"><i class="bx bx-right-arrow-alt"></i>List</a>
       </li>
     </ul>
   </li>
