@@ -30,12 +30,12 @@ class UniqueUserEmailRule implements Rule
         $value = strtoupper($value);
         $user = request()->route('user') ?? null;
         $userId = $user ? $user->id : null;
-        $emailExists = User::query()
+        $exists = User::query()
             ->where('email', $value)
             ->when($user, FilterClosureQueryService::where('id', $userId, false))
             ->first();
 
-        return $emailExists ? false : true;
+        return $exists ? false : true;
     }
 
     /**

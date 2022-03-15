@@ -30,12 +30,12 @@ class UniqueCompanyNameRule implements Rule
         $value = strtoupper($value);
         $company = request()->route('company') ?? null;
         $companyId = $company ? $company->id : null;
-        $emailExists = Company::query()
+        $exists = Company::query()
             ->where('name', $value)
             ->when($company, FilterClosureQueryService::where('id', $companyId, false))
             ->first();
 
-        return $emailExists ? false : true;
+        return $exists ? false : true;
     }
 
     /**

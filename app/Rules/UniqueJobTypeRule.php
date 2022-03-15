@@ -2,11 +2,11 @@
 
 namespace App\Rules;
 
-use App\Models\Client;
+use App\Models\JobType;
 use App\Services\FilterClosureQueryService;
 use Illuminate\Contracts\Validation\Rule;
 
-class UniqueClientNameRule implements Rule
+class UniqueJobTypeRule implements Rule
 {
     /**
      * Create a new rule instance.
@@ -28,12 +28,12 @@ class UniqueClientNameRule implements Rule
     public function passes($attribute, $value): bool
     {
         $value = strtoupper($value);
-        $client = request()->route('client') ?? null;
-        $clientId = $client ? $client->id : null;
-        $exists = Client::query()
+        $jobType = request()->route('job_type') ?? null;
+        $jobTypeId = $jobType ? $jobType->id : null;
+        $exists = JobType::query()
             ->where('name', $value)
             ->where('company_id', request()->get('company_id'))
-            ->when($client, FilterClosureQueryService::where('id', $clientId, false))
+            ->when($jobType, FilterClosureQueryService::where('id', $jobTypeId, false))
             ->first();
 
         return $exists ? false : true;

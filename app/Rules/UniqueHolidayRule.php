@@ -30,13 +30,13 @@ class UniqueHolidayRule implements Rule
         $value = strtoupper($value);
         $holiday = request()->route('holiday') ?? null;
         $holidayId = $holiday ? $holiday->id : null;
-        $emailExists = Holiday::query()
+        $exists = Holiday::query()
             ->where('holiday', $value)
             ->where('company_id', request()->get('company_id'))
             ->when($holiday, FilterClosureQueryService::where('id', $holidayId, false))
             ->first();
 
-        return $emailExists ? false : true;
+        return $exists ? false : true;
     }
 
     /**
@@ -46,6 +46,6 @@ class UniqueHolidayRule implements Rule
      */
     public function message(): string
     {
-        return 'This name already exists.';
+        return 'This date already exists.';
     }
 }

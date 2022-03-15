@@ -67,6 +67,18 @@
   </li>
   <li>
     <a href="javascript:;" class="has-arrow">
+      <div class="parent-icon"><i class='bx bx-chevron-right-square'></i>
+      </div>
+      <div class="menu-title">Job Types</div>
+    </a>
+    <ul>
+      <li>
+        <a href="{{ url('/job-types') }}"><i class="bx bx-right-arrow-alt"></i>List</a>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <a href="javascript:;" class="has-arrow">
       <div class="parent-icon"><i class='bx bx-layer'></i>
       </div>
       <div class="menu-title">Templates</div>
