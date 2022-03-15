@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HolidayController;
@@ -42,5 +43,14 @@ Route::middleware(['web', 'auth'])->group(function() {
         Route::get('/{holiday}/edit', [HolidayController::class, 'edit'])->name('holidays.edit');
         Route::put('/{holiday}', [HolidayController::class, 'update'])->name('holidays.update');
         Route::delete('/{holiday}', [HolidayController::class, 'destroy'])->name('holidays.destroy');
+    });
+
+    Route::prefix('clients')->group(function() {
+        Route::get('/', [ClientController::class, 'index'])->name('clients.list');
+        Route::get('/create', [ClientController::class, 'create'])->name('clients.create');
+        Route::post('/store', [ClientController::class, 'store'])->name('clients.store');
+        Route::get('/{client}/edit', [ClientController::class, 'edit'])->name('clients.edit');
+        Route::put('/{client}', [ClientController::class, 'update'])->name('clients.update');
+        Route::delete('/{client}', [ClientController::class, 'destroy'])->name('clients.destroy');
     });
 });

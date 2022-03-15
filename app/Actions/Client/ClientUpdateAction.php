@@ -1,40 +1,40 @@
 <?php
 
-namespace App\Actions\Holiday;
+namespace App\Actions\Client;
 
-use App\Http\Requests\HolidayRequest;
+use App\Http\Requests\ClientRequest;
 use App\Interfaces\ActionInterface;
-use App\Models\Holiday;
+use App\Models\Client;
 use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
-class HolidayUpdateAction implements ActionInterface
+class ClientUpdateAction implements ActionInterface
 {
     /**
-     * @var App\Http\Requests\HolidayRequest
+     * @var App\Http\Requests\ClientRequest
      */
-    protected HolidayRequest $request;
+    protected ClientRequest $request;
 
     /**
-     * @var App\Models\Holiday
+     * @var App\Models\Client
      */
-    protected Holiday $holiday;
+    protected Client $client;
 
     /**
      * Constructor
      * 
-     * @param App\Http\Requests\HolidayRequest
+     * @param App\Http\Requests\ClientRequest
      */
-    public function __construct(HolidayRequest $request, Holiday $holiday)
+    public function __construct(ClientRequest $request, Client $client)
     {
         $this->request = $request;
-        $this->holiday = $holiday;
+        $this->client = $client;
     }
 
     /**
-     * Store new Holiday, set role and assign to multiple factories
+     * Store new Client, set role and assign to multiple factories
      * 
      * @return array
      */
@@ -42,8 +42,8 @@ class HolidayUpdateAction implements ActionInterface
     {
         try {
             DB::beginTransaction();
-            $this->holiday->fill($this->request->except('_token'));
-            $this->holiday->save();
+            $this->client->fill($this->request->except('_token'));
+            $this->client->save();
             DB::commit();
 
             $primaryMessage = \SUCCESS_MSG;
@@ -59,7 +59,7 @@ class HolidayUpdateAction implements ActionInterface
         }
 
         return [
-            'holiday' => $this->holiday ?? null,
+            'client' => $this->client ?? null,
             'status' => $status ?? null,
             'toastContainer' => view('includes.toastr_content', \compact('iconClass', 'primaryMessage', 'secondaryMessage'))->render(),
         ];

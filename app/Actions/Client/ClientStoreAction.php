@@ -1,40 +1,33 @@
 <?php
 
-namespace App\Actions\Holiday;
+namespace App\Actions\Client;
 
-use App\Http\Requests\HolidayRequest;
+use App\Http\Requests\ClientRequest;
 use App\Interfaces\ActionInterface;
-use App\Models\Holiday;
+use App\Models\Client;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
-class HolidayUpdateAction implements ActionInterface
+class ClientStoreAction implements ActionInterface
 {
     /**
-     * @var App\Http\Requests\HolidayRequest
+     * @var App\Http\Requests\ClientRequest
      */
-    protected HolidayRequest $request;
-
-    /**
-     * @var App\Models\Holiday
-     */
-    protected Holiday $holiday;
+    protected ClientRequest $request;
 
     /**
      * Constructor
      * 
-     * @param App\Http\Requests\HolidayRequest
+     * @param App\Http\Requests\ClientRequest
      */
-    public function __construct(HolidayRequest $request, Holiday $holiday)
+    public function __construct(ClientRequest $request)
     {
         $this->request = $request;
-        $this->holiday = $holiday;
     }
 
     /**
-     * Store new Holiday, set role and assign to multiple factories
+     * Store new Client, set role and assign to multiple factories
      * 
      * @return array
      */
@@ -42,12 +35,13 @@ class HolidayUpdateAction implements ActionInterface
     {
         try {
             DB::beginTransaction();
-            $this->holiday->fill($this->request->except('_token'));
-            $this->holiday->save();
+            $client = new Client();
+            $client->fill($this->request->except('_token'));
+            $client->save();
             DB::commit();
 
             $primaryMessage = \SUCCESS_MSG;
-            $secondaryMessage = \UPDATE_SUCCESS_MSG;
+            $secondaryMessage = \SAVE_SUCCESS_MSG;
             $status = Response::HTTP_OK;
             $iconClass = 'bx bxs-message-square-check';
         } catch (Exception $e) {
@@ -59,7 +53,7 @@ class HolidayUpdateAction implements ActionInterface
         }
 
         return [
-            'holiday' => $this->holiday ?? null,
+            'client' => $client ?? null,
             'status' => $status ?? null,
             'toastContainer' => view('includes.toastr_content', \compact('iconClass', 'primaryMessage', 'secondaryMessage'))->render(),
         ];

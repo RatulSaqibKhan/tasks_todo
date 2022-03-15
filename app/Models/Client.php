@@ -23,7 +23,6 @@ class Client extends Model
         'party_type',
         'phone_no',
         'fax',
-        'logo',
         'active_status',
         'created_by',
         'updated_by',
