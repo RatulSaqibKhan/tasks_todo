@@ -15,6 +15,7 @@ class CreateJobTypesTable extends Migration
     {
         Schema::create('job_types', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('company_id')->index();
             $table->string('name');
             $table->tinyInteger('active_status')->default(0)->comment("0=No,1=Yes");
             $table->unsignedBigInteger('created_by')->nullable();
@@ -22,6 +23,8 @@ class CreateJobTypesTable extends Migration
             $table->unsignedBigInteger('deleted_by')->nullable();
             $table->timestamps();
             $table->softDeletes();
+        
+            $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
         });
     }
 
