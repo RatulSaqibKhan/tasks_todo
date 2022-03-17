@@ -10,6 +10,7 @@ use App\Actions\JobType\JobTypeUpdateAction;
 use App\Http\Requests\JobTypeRequest;
 use App\Models\JobType;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class JobTypeController extends Controller
@@ -87,6 +88,19 @@ class JobTypeController extends Controller
     public function destroy(JobType $job_type): JsonResponse
     {
         $response = (new JobTypeDestroyAction($job_type))->action();
+        
+        return response()->json($response, $response['status']);
+    }
+
+    /**
+     * JobType search data for select2 component
+     * 
+     * @param Illuminate\Http\Request
+     * @return JsonResponse
+     */
+    public function searchSelect(Request $request): JsonResponse
+    {
+        $response = (new JobTypeSearchSelectAction($request))->action();
         
         return response()->json($response, $response['status']);
     }

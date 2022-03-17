@@ -12,4 +12,11 @@ class FilterClosureQueryService
             return $equalCheck ? $query->where($columnName, $search) : $query->where($columnName, '!=',$search);
         };
     }
+
+    public static function whereLike($columnName, $search): Closure
+    {
+        return function($query) use ($columnName, $search) {
+            return $query->where($columnName, 'like', '%'.$search);
+        };
+    }
 }

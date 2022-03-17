@@ -62,5 +62,6 @@ Route::middleware(['web', 'auth'])->group(function() {
         Route::get('/{job_type}/edit', [JobTypeController::class, 'edit'])->name('job-types.edit');
         Route::put('/{job_type}', [JobTypeController::class, 'update'])->name('job-types.update');
         Route::delete('/{job_type}', [JobTypeController::class, 'destroy'])->name('job-types.destroy');
+        Route::get('/search-select', [JobTypeController::class, 'searchSelect'])->name('job-types.search-select');
     });
 });
