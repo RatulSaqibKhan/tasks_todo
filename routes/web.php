@@ -6,6 +6,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HolidayController;
 use App\Http\Controllers\JobTypeController;
+use App\Http\Controllers\TemplateController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -63,5 +64,15 @@ Route::middleware(['web', 'auth'])->group(function() {
         Route::put('/{job_type}', [JobTypeController::class, 'update'])->name('job-types.update');
         Route::delete('/{job_type}', [JobTypeController::class, 'destroy'])->name('job-types.destroy');
         Route::get('/search-select', [JobTypeController::class, 'searchSelect'])->name('job-types.search-select');
+    });
+
+    Route::prefix('templates')->group(function() {
+        Route::get('/', [TemplateController::class, 'index'])->name('templates.list');
+        Route::get('/create', [TemplateController::class, 'create'])->name('templates.create');
+        Route::post('/store', [TemplateController::class, 'store'])->name('templates.store');
+        Route::get('/{template}/edit', [TemplateController::class, 'edit'])->name('templates.edit');
+        Route::put('/{template}', [TemplateController::class, 'update'])->name('templates.update');
+        Route::delete('/{template}', [TemplateController::class, 'destroy'])->name('templates.destroy');
+        Route::get('/search-select', [TemplateController::class, 'searchSelect'])->name('templates.search-select');
     });
 });

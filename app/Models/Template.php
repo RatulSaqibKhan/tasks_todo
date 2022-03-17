@@ -18,7 +18,6 @@ class Template extends Model
         'name',
         'company_id',
         'job_type_id',
-        'task_completion_basis',
         'created_by',
         'updated_by',
         'deleted_by',

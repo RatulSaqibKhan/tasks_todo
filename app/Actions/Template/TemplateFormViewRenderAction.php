@@ -4,6 +4,7 @@ namespace App\Actions\Template;
 
 use App\Interfaces\ActionInterface;
 use App\Models\Company;
+use App\Models\JobType;
 use App\Models\Template;
 use Exception;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,9 +35,11 @@ class TemplateFormViewRenderAction implements ActionInterface
     {
         try {
             $companies = Company::query()->pluck('name', 'id');
+            $jobTypes = $this->template ? JobType::query()->where('company_id', $this->template->company_id)->pluck('name', 'id') : [];
             $form = view('templates.form', [
                 'template' => $this->template ?? null,
-                'companies' => $companies
+                'companies' => $companies,
+                'job_types' => $jobTypes,
             ])->render();
             
             $primaryMessage = \SUCCESS_MSG;

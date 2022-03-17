@@ -42,7 +42,7 @@ class TemplateSearchSelectAction implements ActionInterface
                 ->when($q, FilterClosureQueryService::whereLike('name', $q))
                 ->when($company_id, FilterClosureQueryService::where('company_id', $company_id))
                 ->when($job_type_id, FilterClosureQueryService::where('job_type_id', $job_type_id))
-                ->limit(30)
+                ->get()
                 ->map(function($item) {
                     return [
                         'id' => $item->id,
