@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Actions\JobType\JobTypeDataFetchAction;
 use App\Actions\JobType\JobTypeDestroyAction;
 use App\Actions\JobType\JobTypeFormViewRenderAction;
+use App\Actions\JobType\JobTypeSearchSelectAction;
 use App\Actions\JobType\JobTypeStoreAction;
 use App\Actions\JobType\JobTypeUpdateAction;
 use App\Http\Requests\JobTypeRequest;
