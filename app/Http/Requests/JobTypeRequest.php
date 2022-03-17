@@ -40,7 +40,7 @@ class JobTypeRequest extends FormRequest
         return [
             'name' => ['required', new UniqueJobTypeRule()],
             'company_id' => 'required|integer',
-            'active_status' => 'nullable',
+            'active_status' => 'required|integer',
         ];
     }
 }

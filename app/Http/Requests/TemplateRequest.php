@@ -41,7 +41,6 @@ class TemplateRequest extends FormRequest
             'name' => ['required', new UniqueTemplateRule()],
             'company_id' => 'required|integer',
             'job_type_id' => 'required|integer',
-            'task_completion_basis' => 'required|integer',
         ];
     }
 }

@@ -16,6 +16,7 @@
             <th>SL</th>
             <th>Job Type</th>
             <th>Company</th>
+            <th>Status</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -25,6 +26,7 @@
             <td>{{ $loop->iteration }}</td>
             <td>{{ $job_type->name }}</td>
             <td>{{ $job_type->company->name }}</td>
+            <td>{{ ACTIVE_STATUS_OPTIONS[$job_type->active_status] }}</td>
             <td>
               <div class="d-flex align-items-center justify-content-center">
                 <button type="button" class="btn-custom btn-close-white dropdown-toggle-split font-18"
@@ -42,7 +44,7 @@
           </tr>
           @empty
           <tr>
-            <th colspan="4" class="text-center">No Data Found</th>
+            <th colspan="5" class="text-center">No Data Found</th>
           </tr>
           @endforelse
         </tbody>

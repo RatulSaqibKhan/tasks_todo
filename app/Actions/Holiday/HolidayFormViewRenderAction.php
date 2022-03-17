@@ -51,7 +51,7 @@ class HolidayFormViewRenderAction implements ActionInterface
         }
 
         return [
-            'title' => "New Holiday",
+            'title' => $this->holiday ? "Update Holiday": "New Holiday",
             'view' => $form ?? null,
             'status' => $status ?? null,
             'primaryMessage' => $primaryMessage ?? null,

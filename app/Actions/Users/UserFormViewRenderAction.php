@@ -43,6 +43,7 @@ class UserFormViewRenderAction implements ActionInterface
                 'companies' => $companies,
                 'roles' => $roles,
                 'role_id' => $role_id,
+                'company_ids' => $company_ids,
             ])->render();
             
             $primaryMessage = \SUCCESS_MSG;
@@ -57,7 +58,7 @@ class UserFormViewRenderAction implements ActionInterface
         }
 
         return [
-            'title' => "New User",
+            'title' => $this->user ? "Update User" : "New User",
             'view' => $form ?? null,
             'status' => $status ?? null,
             'primaryMessage' => $primaryMessage ?? null,

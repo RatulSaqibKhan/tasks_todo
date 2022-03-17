@@ -51,7 +51,7 @@ class ClientFormViewRenderAction implements ActionInterface
         }
 
         return [
-            'title' => "New Client",
+            'title' => $this->client ? "Update Client" : "New Client",
             'view' => $form ?? null,
             'status' => $status ?? null,
             'primaryMessage' => $primaryMessage ?? null,

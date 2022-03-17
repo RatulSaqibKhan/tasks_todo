@@ -48,7 +48,7 @@ class CompanyFormViewRenderAction implements ActionInterface
         }
 
         return [
-            'title' => "New Company",
+            'title' => $this->company ? "Update Company": "New Company",
             'view' => $form ?? null,
             'status' => $status ?? null,
             'primaryMessage' => $primaryMessage ?? null,

@@ -41,7 +41,7 @@ class JobTypeSearchSelectAction implements ActionInterface
                 ->where('active_status', \ACTIVE)
                 ->when($q, FilterClosureQueryService::whereLike('name', $q))
                 ->when($company_id, FilterClosureQueryService::where('company_id', $company_id))
-                ->limit(30)
+                ->get()
                 ->map(function($item) {
                     return [
                         'id' => $item->id,

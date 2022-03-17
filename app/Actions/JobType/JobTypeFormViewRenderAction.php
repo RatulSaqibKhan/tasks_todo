@@ -51,7 +51,7 @@ class JobTypeFormViewRenderAction implements ActionInterface
         }
 
         return [
-            'title' => "New Job Type",
+            'title' => $this->jobType ? "Update Job Type": "New Job Type",
             'view' => $form ?? null,
             'status' => $status ?? null,
             'primaryMessage' => $primaryMessage ?? null,

@@ -59,9 +59,9 @@ class TemplateController extends Controller
      * @param App\Models\Template
      * @return JsonResponse
      */
-    public function edit(Template $job_type): JsonResponse
+    public function edit(Template $template): JsonResponse
     {
-        $response = (new TemplateFormViewRenderAction($job_type))->action();
+        $response = (new TemplateFormViewRenderAction($template))->action();
         
         return response()->json($response);
     }
@@ -73,9 +73,9 @@ class TemplateController extends Controller
      * @param App\Models\Template
      * @return JsonResponse
      */
-    public function update(TemplateRequest $request, Template $job_type): JsonResponse
+    public function update(TemplateRequest $request, Template $template): JsonResponse
     {
-        $response = (new TemplateUpdateAction($request, $job_type))->action();
+        $response = (new TemplateUpdateAction($request, $template))->action();
         
         return response()->json($response, $response['status']);
     }
@@ -86,9 +86,9 @@ class TemplateController extends Controller
      * @param App\Models\Template
      * @return JsonResponse
      */
-    public function destroy(Template $job_type): JsonResponse
+    public function destroy(Template $template): JsonResponse
     {
-        $response = (new TemplateDestroyAction($job_type))->action();
+        $response = (new TemplateDestroyAction($template))->action();
         
         return response()->json($response, $response['status']);
     }

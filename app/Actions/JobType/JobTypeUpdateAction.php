@@ -7,7 +7,6 @@ use App\Interfaces\ActionInterface;
 use App\Models\JobType;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\Response;
 
 class JobTypeUpdateAction implements ActionInterface
