@@ -88,7 +88,7 @@
         <a href="{{ url('/templates') }}"><i class="bx bx-right-arrow-alt"></i>List</a>
       </li>
       <li>
-        <a href="{{ url('/') }}"><i class="bx bx-right-arrow-alt"></i>Assign Tasks</a>
+        <a href="{{ url('/templates/assign-tasks') }}"><i class="bx bx-right-arrow-alt"></i>Assign Tasks</a>
       </li>
     </ul>
   </li>

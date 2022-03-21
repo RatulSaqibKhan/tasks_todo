@@ -74,5 +74,7 @@ Route::middleware(['web', 'auth'])->group(function() {
         Route::put('/{template}', [TemplateController::class, 'update'])->name('templates.update');
         Route::delete('/{template}', [TemplateController::class, 'destroy'])->name('templates.destroy');
         Route::get('/search-select', [TemplateController::class, 'searchSelect'])->name('templates.search-select');
+        Route::get('/assign-tasks', [TemplateController::class, 'assignTasks'])->name('templates.assign-tasks');
+        Route::get('/fetch-assigned-tasks-form', [TemplateController::class, 'assignedTasksForm'])->name('templates.assign-tasks-form');
     });
 });

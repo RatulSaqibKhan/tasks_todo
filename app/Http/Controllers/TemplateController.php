@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Template\TemplateAssignedTasksFormAction;
+use App\Actions\Template\TemplateAssignTasksInitAction;
 use App\Actions\Template\TemplateDataFetchAction;
 use App\Actions\Template\TemplateDestroyAction;
 use App\Actions\Template\TemplateFormViewRenderAction;
@@ -102,6 +104,31 @@ class TemplateController extends Controller
     public function searchSelect(Request $request): JsonResponse
     {
         $response = (new TemplateSearchSelectAction($request))->action();
+        
+        return response()->json($response, $response['status']);
+    }
+
+    /**
+     * Go to Assign Tasks Form
+     * 
+     * @return View
+     */
+    public function assignTasks(): View
+    {
+        $data = (new TemplateAssignTasksInitAction)->action();
+
+        return view('templates.assign_tasks', $data);
+    }
+
+     /**
+     * Template assigned tasks form generate
+     * 
+     * @param Illuminate\Http\Request
+     * @return JsonResponse
+     */
+    public function assignedTasksForm(Request $request)
+    {
+        $response = (new TemplateAssignedTasksFormAction($request))->action();
         
         return response()->json($response, $response['status']);
     }
